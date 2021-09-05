@@ -8,7 +8,7 @@ it('mounts App without crashing', () => {
   wrapper.unmount()
 })
 
-it('mounts Dashboard without crashing', () => {
+it('mounts Consignments without crashing', () => {
   const wrapper = shallow(<Dashboard />)
   wrapper.unmount()
 })

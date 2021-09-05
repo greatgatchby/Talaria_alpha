@@ -1,5 +1,13 @@
 import React from 'react'
-
+//Talaria routes
+const Consignments = React.lazy(() =>
+  import('./views/Merchant/Consignments/consignments.component'),
+)
+const Transfers = React.lazy(() => import('./views/Merchant/Transfers/transfers.component'))
+const Authentication = React.lazy(() =>
+  import('./views/Merchant/Authentication/authenticaton.component'),
+)
+//Template routes
 const Dashboard = React.lazy(() => import('./views/dashboard/Dashboard'))
 const Colors = React.lazy(() => import('./views/theme/colors/Colors'))
 const Typography = React.lazy(() => import('./views/theme/typography/Typography'))
@@ -55,7 +63,12 @@ const Widgets = React.lazy(() => import('./views/components/widgets/Widgets'))
 
 const routes = [
   { path: '/', exact: true, name: 'Home' },
+  //talaria paths
+  { path: '/consignments', name: 'consignments', component: Consignments },
+  { path: '/transfers', name: 'transfers', component: Transfers },
+  { path: '/authentication', name: 'authentication', component: Authentication },
   { path: '/dashboard', name: 'Dashboard', component: Dashboard },
+  //template paths
   { path: '/theme', name: 'Theme', component: Colors, exact: true },
   { path: '/theme/colors', name: 'Colors', component: Colors },
   { path: '/theme/typography', name: 'Typography', component: Typography },
