@@ -7,6 +7,10 @@ const Transfers = React.lazy(() => import('./views/Merchant/Transfers/transfers.
 const Authentication = React.lazy(() =>
   import('./views/Merchant/Authentication/authenticaton.component'),
 )
+const Payouts = React.lazy(() => import('./views/Merchant/Payouts/payouts.component'))
+const Vendors = React.lazy(() => import('./views/Merchant/Vendors/vendors.component'))
+const Inventory = React.lazy(() => import('./views/Merchant/Inventory/inventory.component'))
+const Venues = React.lazy(() => import('./views/Merchant/Venues/venues.component'))
 //Template routes
 const Dashboard = React.lazy(() => import('./views/dashboard/Dashboard'))
 const Colors = React.lazy(() => import('./views/theme/colors/Colors'))
@@ -68,6 +72,10 @@ const routes = [
   { path: '/transfers', name: 'transfers', component: Transfers },
   { path: '/authentication', name: 'authentication', component: Authentication },
   { path: '/dashboard', name: 'Dashboard', component: Dashboard },
+  { path: '/payouts', name: 'Payouts', component: Payouts },
+  { path: '/vendors', name: 'Vendors', component: Vendors },
+  { path: '/inventory', name: 'Inventory', component: Inventory },
+  { path: '/venues', name: 'Venues', component: Venues },
   //template paths
   { path: '/theme', name: 'Theme', component: Colors, exact: true },
   { path: '/theme/colors', name: 'Colors', component: Colors },

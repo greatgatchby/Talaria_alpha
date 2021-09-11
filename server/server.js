@@ -20,7 +20,7 @@ app.use(
   session({
     key: 'userid',
     secret: 'some secret', // key for signing the cookie that can be saved to the browser
-    resave: true, //should we create a new session for each request
+    resave: false, //should we create a new session for each request
     saveUninitialized: false, // if we have not touched or modified the session save
     cookie: {
       expires: 60 * 60 * 24,

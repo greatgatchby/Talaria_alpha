@@ -1,5 +1,30 @@
 const session = require('express-session')
+const sql = require('./db-connection')
 module.exports = (app) => {
+  app.post('/auth', function (request, response) {
+    const username = request.body.username
+    const password = request.body.password
+    if (username && password) {
+      sql.query(
+        'SELECT * FROM user WHERE email = ? AND password = ?',
+        [username, password],
+        function (error, results, fields) {
+          if (results.length > 0) {
+            request.session.loggedin = true
+            request.session.username = username
+            response.redirect('/home')
+          } else {
+            response.send('Incorrect Username and/or Password!')
+            response.redirect('/user/signup')
+          }
+          response.end()
+        },
+      )
+    } else {
+      response.send('Please enter Username and Password!')
+      response.end()
+    }
+  })
   //CRUD functions for user
   const user = require('./user/user.controller')
   app.post('/user/signup', user.create)

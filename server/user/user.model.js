@@ -1,4 +1,3 @@
-
 const sql = require('mysql')
 
 const User = function (user) {
@@ -21,8 +20,16 @@ User.create = (newUser, result) => {
   })
 }
 //Login
-User.signin = (username, password, cookie) =>{
-
+User.signin = (username, password, result) => {
+  sql.query(`SELECT * FROM USER WHERE email=${username} AND password=${password}`, (err, res) => {
+    if(err) {
+      console.log(`error: `, err)
+      result(err, null)
+      return
+    }
+    result.loggedin = true
+    result.username = username
+  })
 }
 //Logout
 //update user info in the relation

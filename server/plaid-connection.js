@@ -1,6 +1,6 @@
 const plaid = require('plaid')
 
-const plaidClient = new plaid.Client({
+const plaidClient = new plaid.Configuration({
   clientID: '5ee69e7df9c7ee0013150dc8',
   secret: '8519b849cce770ff99ffc35e69c291',
   env: 'https://sandbox.plaid.com',

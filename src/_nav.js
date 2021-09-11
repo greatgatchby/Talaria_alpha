@@ -58,25 +58,25 @@ const _nav = [
   {
     component: CNavItem,
     name: 'Payouts',
-    to: '/consignments',
+    to: '/payouts',
     icon: <CIcon icon={cilSwapHorizontal} customClassName="nav-icon" />,
   },
   {
     component: CNavItem,
     name: 'Vendors',
-    to: '/consignments',
+    to: '/vendors',
     icon: <CIcon icon={cilUser} customClassName="nav-icon" />,
   },
   {
     component: CNavItem,
     name: 'Inventory',
-    to: '/consignments',
+    to: '/inventory',
     icon: <CIcon icon={cilClipboard} customClassName="nav-icon" />,
   },
   {
     component: CNavItem,
     name: 'Venues',
-    to: '/consignments',
+    to: '/venues',
     icon: <CIcon icon={cilIndustry} customClassName="nav-icon" />,
   },
   {

@@ -4,6 +4,7 @@ import {
   CButton,
   CCard,
   CCardBody,
+  CCardFooter,
   CCardGroup,
   CCol,
   CContainer,
@@ -76,6 +77,14 @@ const Login = () => {
                 </CCardBody>
               </CCard>
             </CCardGroup>
+            <div className={'d-flex justify-content-center'}>
+              <CCol md={3} className={'d-flex flex-column mt-3 mx-5'}>
+                <CButton className={'mb-2'}>Google</CButton>
+                <CButton className={'mb-2'}>Facebook</CButton>
+                <CButton className={'mb-2'}>Microsoft</CButton>
+                <CButton className={'mb-2'}>Twitter</CButton>
+              </CCol>
+            </div>
           </CCol>
         </CRow>
       </CContainer>

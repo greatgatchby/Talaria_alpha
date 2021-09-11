@@ -26,5 +26,10 @@ exports.login = (req, res) => {
 exports.create = (req, res) => {}
 exports.find = (req, res) => {}
 exports.logout = (req, res) => {}
+exports.login = (req, res) => {
+  User.signin(req.params.username, req.params.password, (err,data) => {
+
+  })
+}
 exports.update = (req, res) => {}
 exports.remove = (req, res) => {}
