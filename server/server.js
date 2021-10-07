@@ -1,5 +1,5 @@
 const express = require('express')
-const sql = require('./db-connection')
+const db = require('./db-connection')
 const session = require('express-session')
 const bodyParser = require('body-parser')
 const cookieParser = require('cookie-parser')
@@ -14,6 +14,7 @@ const corsOptions = {
   optionsSuccessStatus: 200,
   credentials: true,
 }
+db.sequelize.sync()
 //session handling
 app.set('trust proxy', 1)
 app.use(

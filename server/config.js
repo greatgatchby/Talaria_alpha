@@ -5,7 +5,14 @@ let config = {
     PASSWORD: '',
     DB: 'talaria',
     DIALECT: 'mysql',
+    POOL: {
+      max: 1000,
+      min: 0,
+      acquire: 30000,
+      idle: 10000,
+    },
   },
+  secret: 'secret-key',
   firebase: {
     apiKey: 'AIzaSyCk1LgEUhXjSfdjfzjTCqr6F_mEhTn_hDw',
     authDomain: 'talaria-270af.firebaseapp.com',
