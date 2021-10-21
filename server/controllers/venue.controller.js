@@ -1,7 +1,7 @@
 const db = require('../db-connection')
 const config = require('../config')
 const venue = db.venue
-
+//TODO write venue functions
 exports.create = (req, res) => {}
 exports.getAll = (req, res) => {}
 exports.findOne = (req, res) => {}

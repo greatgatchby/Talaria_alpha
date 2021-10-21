@@ -1,6 +1,6 @@
 const { verifySignUp, authJWT } = require('./middleware')
 module.exports = (app) => {
-  //CRUD functions for user
+  //CRUD functions for auth/user
   app.use(function (req, res, next) {
     res.header('Access-Control-Allow-Headers', 'x-access-token, Origin, Content-Type, Accept')
     next()
@@ -11,6 +11,7 @@ module.exports = (app) => {
   const user = require('./controllers/user.controller')
   app.put('/user', authJWT.verifyToken, user.update)
   app.get('/user/:id', authJWT.verifyToken, user.findOne)
+  //TODO add functions for vendors
   const consignment = require('./controllers/consignment.controller')
   //CRUD functions for consignment
   app.post('/consignment', authJWT.verifyToken, consignment.create)
@@ -45,9 +46,23 @@ module.exports = (app) => {
   //CRUD functions for venue
   const venue = require('./controllers/venue.controller')
   app.post('/venue', authJWT.verifyToken, venue.create)
-  app.get('/venue/:id', authJWT.verifyToken, venue.getAll)
-  app.get('/venue', authJWT.verifyToken, venue.findOne)
+  app.get('/venue/', authJWT.verifyToken, venue.getAll)
+  app.get('/venue/:id', authJWT.verifyToken, venue.findOne)
   app.put('/venue', authJWT.verifyToken, venue.update)
   app.delete('/venue', authJWT.verifyToken, venue.delete)
   app.delete('/venue', authJWT.verifyToken, venue.deleteAll)
+  // functions for billing
+  const billing = require('./controllers/billing.controller')
+  app.post('/billing', authJWT.verifyToken, billing.create)
+  app.get('/billing/:id', authJWT.verifyToken, billing.findOne)
+  app.get('/billing', authJWT.verifyToken, billing.getAll)
+  app.delete('/billing', authJWT.verifyToken, billing.delete)
+  app.delete('/billing/:userid', authJWT.verifyToken, billing.deleteAll)
+  //functions for transfer
+  const transfer = require('./controllers/transfer.controller')
+  app.post('/transfer', authJWT.verifyToken, transfer.create)
+  app.get('/transfer', authJWT.verifyToken, transfer.getAll)
+  app.get('/initiate-transfer', authJWT.verifyToken, transfer.send)
+  app.put('/transfer', authJWT.verifyToken, transfer.update)
+  app.delete('/transfer', authJWT.verifyToken, transfer.delete)
 }

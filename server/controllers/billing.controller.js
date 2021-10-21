@@ -1,10 +1,8 @@
 const db = require('../db-connection')
-const config = require('../config')
 const Billing = db.billing
 const Bacs = db.bacs
 const Iban = db.iban
 const User = db.user
-const dateTime = require('./datetime')
 
 exports.create = (req, res) => {
   User.findOne({
@@ -47,6 +45,18 @@ exports.create = (req, res) => {
 
 exports.getAll = (req, res) => {
   Billing.findAll({ where: { userid: req.body.uid } })
+    .then((data) => {
+      res.status(200).send(data)
+    })
+    .catch((err) => {
+      res.status(500).send({ message: err.message })
+    })
+}
+
+exports.findOne = (req, res) => {
+  Billing.findOne({ where: { billingid: req.params.id } }).catch((err) => {
+    res.status(500).send({ message: err.message })
+  })
 }
 
 exports.update = (req, res) => {
@@ -103,4 +113,10 @@ exports.delete = (req, res) => {
     .catch((err) => {
       res.status(500).send({ message: err.message })
     })
+}
+
+exports.deleteAll = (req, res) => {
+  Billing.deleteAll({ where: { userid: req.params.userid } }).then(() => {
+    res.status(500).send('all billing for user ' + req.params.userid)
+  })
 }

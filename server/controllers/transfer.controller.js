@@ -26,12 +26,15 @@ exports.create = (req, res) => {
       })
     })
     .catch((err) => {
-      res.stat
+      res.status(500).send({ message: err.message })
     })
 }
-
-exports.send = (req, res) => {}
-
+//TODO write transfer functions
 exports.update = (req, res) => {}
+exports.getAll = (req, res) => {
+  Transfer.findAll({ where: { merchantid: req.body.merchantid } })
+}
+//TODO connect to payments api
+exports.send = (req, res) => {}
 
 exports.delete = (req, res) => {}
