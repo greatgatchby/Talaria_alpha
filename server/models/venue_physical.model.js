@@ -12,11 +12,11 @@ module.exports = (sequelize, Sequelize) => {
       postcode: {
         type: Sequelize.STRING,
       },
-      timestamps: false,
-      freezeTableName: true,
     },
     {
       tableName: 'venue_online',
+      timestamps: false,
+      freezeTableName: true,
     },
   )
 }

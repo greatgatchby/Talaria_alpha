@@ -40,6 +40,15 @@ exports.getAll = (req, res) => {
     res.status(500).send({ message: err.message })
   })
 }
+exports.getOne = (req, res) => {
+  Policy.findOne({ where: { uid: req.body.uid, id: req.body.id } })
+    .then((policy) => {
+      res.status(200).send(policy)
+    })
+    .catch((err) => {
+      res.status(500).send({ message: err.message })
+    })
+}
 
 exports.delete = (req, res) => {
   Policy.delete({

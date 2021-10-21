@@ -9,30 +9,29 @@ const dateTime = require('./datetime')
 
 exports.create = (req, res) => {
   //find sender billing
-  Billing.findOne({ where: { userid: req.body.userid } }).then((billing) => {
-    const sender = billing
-    Billing.findOne({
-      where: { userid: req.body.recipient },
-    }).then((recipient) => {
-      const recipient_billing = recipient
-      Transfer.create({
-        consignmentid: req.body.consignmentid,
-        sender_billing_id: sender,
-        recipient_billing_id: recipient_billing,
-        createdAt: dateTime,
+  Billing.findOne({ where: { userid: req.body.userid } })
+    .then((billing) => {
+      const sender = billing
+      Billing.findOne({
+        where: { userid: req.body.recipient },
+      }).then((recipient) => {
+        const recipient_billing = recipient
+        Transfer.create({
+          consignmentid: req.body.consignmentid,
+          sender_billing_id: sender,
+          recipient_billing_id: recipient_billing,
+          createdAt: dateTime,
+        })
+        res.send('payment has been initiated and will be completed soon')
       })
     })
-  })
+    .catch((err) => {
+      res.stat
+    })
 }
 
-exports.send = (req, res) => {
+exports.send = (req, res) => {}
 
-}
+exports.update = (req, res) => {}
 
-exports.update = (req,res) => {
-
-}
-
-exports.delete = (req,res) =>{
-
-}
+exports.delete = (req, res) => {}

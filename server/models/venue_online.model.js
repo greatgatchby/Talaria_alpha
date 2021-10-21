@@ -1,6 +1,6 @@
 module.exports = (sequelize, Sequelize) => {
-  const Venue = sequelize.define(
-    'venue',
+  const VenueOnline = sequelize.define(
+    'venue_online',
     {
       id: {
         type: Sequelize.INTEGER,
@@ -14,7 +14,7 @@ module.exports = (sequelize, Sequelize) => {
       tableName: 'venue_online',
     },
     {
-      timestamps: false,
+      freezeTableName: true,
     },
   )
 }

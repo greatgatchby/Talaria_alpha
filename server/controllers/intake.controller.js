@@ -11,7 +11,7 @@ exports.create = (req, res) => {
   }
   const id = req.body.consignmentid
   Consignment.findOne({
-    where: { consignmentid: id   },
+    where: { consignmentid: id },
   })
     .then((consignment) => {
       Intake.create({
@@ -56,11 +56,28 @@ exports.getAll = (req, res) => {
       res.status(500).send({ message: err.message })
     })
 }
-
+exports.findOne = (req, res) => {
+  Intake.findOne({ where: { id: req.params.intakeId } })
+}
 exports.delete = (req, res) => {
   Intake.delete({
-    where: { intakeid: req.body.intakeid}
-  }).then(res.send({ message: 'intake' + req.body.intakeid + 'has been deleted successfully' }))
+    where: { intakeid: req.body.intakeid },
+  })
+    .then(res.send({ message: 'intake' + req.body.intakeid + 'has been deleted successfully' }))
+    .catch((err) => {
+      res.status(500).send({ message: err.message })
+    })
+}
+exports.deleteAll = (req, res) => {
+  if (!req.body.merchantid) {
+    return res.status(400).send({ message: 'no merchant found'})
+  }
+  Intake.delete({
+    where: { merchantid: req.body.merchantid },
+  })
+    .then(
+      res.send({ message: 'intakes for' + req.body.merchantid + 'has been deleted successfully' }),
+    )
     .catch((err) => {
       res.status(500).send({ message: err.message })
     })

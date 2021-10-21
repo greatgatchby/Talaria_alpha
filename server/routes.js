@@ -5,9 +5,11 @@ module.exports = (app) => {
     res.header('Access-Control-Allow-Headers', 'x-access-token, Origin, Content-Type, Accept')
     next()
   })
-  const user = require('./controllers/auth.controller')
-  app.post('/user/signup', verifySignUp.checkDuplicateEmail, user.signup)
-  app.post('/user/signin', user.signin)
+  const auth = require('./controllers/auth.controller')
+  app.post('/auth/signup', verifySignUp.checkDuplicateEmail, auth.signup)
+  app.post('/auth/signin', auth.signin)
+  const user = require('./controllers/user.controller')
+  app.put('/user', authJWT.verifyToken, user.update)
   const consignment = require('./controllers/consignment.controller')
   //CRUD functions for consignment
   app.post('/consignment', authJWT.verifyToken, consignment.create)
@@ -17,8 +19,12 @@ module.exports = (app) => {
   app.put('/consignment/reject', authJWT.verifyToken, consignment.reject)
   //CRUD functions for intake
   const intake = require('./controllers/intake.controller')
-  app.get('/intake', intake.getAll)
-  app.post('/intake', intake.create)
+  app.post('/intake', authJWT.verifyToken, intake.create)
+  app.get('/intake', authJWT.verifyToken, intake.getAll)
+  app.get('/intake/', authJWT.verifyToken, intake.findOne)
+  app.put('/intake/:intakeId', authJWT.verifyToken, intake.update)
+  app.delete('/intake/:intakeId', authJWT.verifyToken, intake.delete)
+  app.delete('/intake', authJWT.verifyToken, intake.deleteAll)
   //CRUD functions for policy
   //CRUD functions for Staff
   //CRUD functions for intakes
