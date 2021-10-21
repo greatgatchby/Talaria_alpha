@@ -40,7 +40,7 @@ exports.getAll = (req, res) => {
     res.status(500).send({ message: err.message })
   })
 }
-exports.getOne = (req, res) => {
+exports.findOne = (req, res) => {
   Policy.findOne({ where: { uid: req.body.uid, id: req.body.id } })
     .then((policy) => {
       res.status(200).send(policy)
@@ -54,6 +54,15 @@ exports.delete = (req, res) => {
   Policy.delete({
     where: {
       policyid: req.body.policyid,
+    },
+  }).catch((err) => {
+    res.status(500).send({ message: err.message })
+  })
+}
+exports.deleteAll = (req, res) => {
+  Policy.delete({
+    where: {
+      merchantid: req.body.merchantid,
     },
   }).catch((err) => {
     res.status(500).send({ message: err.message })

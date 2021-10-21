@@ -10,6 +10,7 @@ module.exports = (app) => {
   app.post('/auth/signin', auth.signin)
   const user = require('./controllers/user.controller')
   app.put('/user', authJWT.verifyToken, user.update)
+  app.get('/user/:id', authJWT.verifyToken, user.findOne)
   const consignment = require('./controllers/consignment.controller')
   //CRUD functions for consignment
   app.post('/consignment', authJWT.verifyToken, consignment.create)
@@ -26,8 +27,27 @@ module.exports = (app) => {
   app.delete('/intake/:intakeId', authJWT.verifyToken, intake.delete)
   app.delete('/intake', authJWT.verifyToken, intake.deleteAll)
   //CRUD functions for policy
+  const policy = require('./controllers/policy.controller')
+  app.post('/policy', authJWT.verifyToken, policy.create)
+  app.get('/policy', authJWT.verifyToken, policy.getAll)
+  app.get('/policy/:policyId', authJWT.verifyToken, policy.findOne)
+  app.put('/policy/:policyId', authJWT.verifyToken, policy.update)
+  app.delete('/policy/:policyId', authJWT.verifyToken, policy.delete)
+  app.delete('/policy', authJWT.verifyToken, policy.deleteAll)
   //CRUD functions for Staff
-  //CRUD functions for intakes
+  const staff = require('./controllers/staff.controller')
+  app.post('/staff', authJWT.verifyToken, staff.create)
+  app.get('/staff/:id', authJWT.verifyToken, staff.getAll)
+  app.get('/staff', authJWT.verifyToken, staff.findOne)
+  app.put('/staff', authJWT.verifyToken, staff.update)
+  app.delete('/staff', authJWT.verifyToken, staff.delete)
+  app.delete('/staff', authJWT.verifyToken, staff.deleteAll)
   //CRUD functions for venue
-  //crud functions for vendor
+  const venue = require('./controllers/venue.controller')
+  app.post('/venue', authJWT.verifyToken, venue.create)
+  app.get('/venue/:id', authJWT.verifyToken, venue.getAll)
+  app.get('/venue', authJWT.verifyToken, venue.findOne)
+  app.put('/venue', authJWT.verifyToken, venue.update)
+  app.delete('/venue', authJWT.verifyToken, venue.delete)
+  app.delete('/venue', authJWT.verifyToken, venue.deleteAll)
 }
