@@ -30,11 +30,10 @@ exports.create = (req, res) => {
     })
 }
 //TODO write transfer functions
-exports.update = (req, res) => {}
 exports.getAll = (req, res) => {
   Transfer.findAll({ where: { merchantid: req.body.merchantid } })
 }
 //TODO connect to payments api
-exports.send = (req, res) => {}
+exports.initiate = (req, res) => {}
 
 exports.delete = (req, res) => {}

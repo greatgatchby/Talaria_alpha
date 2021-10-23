@@ -22,9 +22,20 @@ const verifyToken = (req, res, next) => {
     next()
   })
 }
-
+const verifyMerchant = (req, res, next) => {
+  User.findOne({ where: { userid: req.params.uid } })
+    .then((data) => {
+      if (data.userType !== 'merchant') {
+        res.status(400).send({ message: 'access denied' })
+      } else next()
+    })
+    .catch((err) => {
+      res.status(500).send({ message: err.message })
+    })
+}
 const authJWT = {
   verifyToken: verifyToken,
+  verifyMerchant: verifyMerchant,
 }
 
 module.exports = authJWT

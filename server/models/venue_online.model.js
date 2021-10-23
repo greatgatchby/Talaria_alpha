@@ -9,6 +9,9 @@ module.exports = (sequelize, Sequelize) => {
       accessToken: {
         type: Sequelize.STRING,
       },
+      type: {
+        type: Sequelize.STRING,
+      },
     },
     {
       tableName: 'venue_online',

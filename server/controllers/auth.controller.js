@@ -52,6 +52,7 @@ exports.signup = (req, res) => {
       lastname: req.body.lastname,
       userType: req.body.userType,
       createdAt: dateTime(),
+      userid: uid.v4(),
     })
       .then(() => {
         User.findOne({
@@ -60,6 +61,7 @@ exports.signup = (req, res) => {
           Merchant.create({
             userid: user.userid,
           })
+          res.status(200).send({ message: 'user ' + req.body.email + ' created'})
         })
       })
       .catch((err) => {

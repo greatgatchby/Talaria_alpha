@@ -18,7 +18,7 @@ module.exports = (sequelize, Sequelize) => {
       postcode: {
         type: Sequelize.STRING,
       },
-      devision: {
+      division: {
         type: Sequelize.STRING,
       },
       userid: {
@@ -26,12 +26,6 @@ module.exports = (sequelize, Sequelize) => {
       },
       merchantid: {
         type: Sequelize.STRING,
-      },
-      createdAt: {
-        type: Sequelize.DATE,
-      },
-      upadtedAt: {
-        type: Sequelize.DATE,
       },
     },
     {

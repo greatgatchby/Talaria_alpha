@@ -11,7 +11,7 @@ module.exports = (app) => {
   const user = require('./controllers/user.controller')
   app.put('/user', authJWT.verifyToken, user.update)
   app.get('/user/:id', authJWT.verifyToken, user.findOne)
-  //TODO add functions for vendors
+  app.get('/vendor/:uid', authJWT.verifyToken, user.findVendors)
   const consignment = require('./controllers/consignment.controller')
   //CRUD functions for consignment
   app.post('/consignment', authJWT.verifyToken, consignment.create)
@@ -23,8 +23,8 @@ module.exports = (app) => {
   const intake = require('./controllers/intake.controller')
   app.post('/intake', authJWT.verifyToken, intake.create)
   app.get('/intake', authJWT.verifyToken, intake.getAll)
-  app.get('/intake/', authJWT.verifyToken, intake.findOne)
-  app.put('/intake/:intakeId', authJWT.verifyToken, intake.update)
+  app.get('/intake/:id', authJWT.verifyToken, intake.findOne)
+  app.put('/intake/:id', authJWT.verifyToken, intake.update)
   app.delete('/intake/:intakeId', authJWT.verifyToken, intake.delete)
   app.delete('/intake', authJWT.verifyToken, intake.deleteAll)
   //CRUD functions for policy
@@ -45,8 +45,11 @@ module.exports = (app) => {
   app.delete('/staff', authJWT.verifyToken, staff.deleteAll)
   //CRUD functions for venue
   const venue = require('./controllers/venue.controller')
-  app.post('/venue', authJWT.verifyToken, venue.create)
-  app.get('/venue/', authJWT.verifyToken, venue.getAll)
+  app.post('/venue_physical', authJWT.verifyToken, venue.createPhysical)
+  app.post('/venue/connect_square', authJWT.verifyToken, venue.connectSQUARE)
+  app.post('/venue/connect_woo', authJWT.verifyToken, venue.connectWOO)
+  app.post('/venue/connect_shopify', authJWT.verifyToken, venue.connectSHOPIFY)
+  app.get('/venue', authJWT.verifyToken, venue.getAll)
   app.get('/venue/:id', authJWT.verifyToken, venue.findOne)
   app.put('/venue', authJWT.verifyToken, venue.update)
   app.delete('/venue', authJWT.verifyToken, venue.delete)
@@ -56,13 +59,13 @@ module.exports = (app) => {
   app.post('/billing', authJWT.verifyToken, billing.create)
   app.get('/billing/:id', authJWT.verifyToken, billing.findOne)
   app.get('/billing', authJWT.verifyToken, billing.getAll)
+  app.put('/billing', authJWT.verifyToken, billing.update)
   app.delete('/billing', authJWT.verifyToken, billing.delete)
   app.delete('/billing/:userid', authJWT.verifyToken, billing.deleteAll)
   //functions for transfer
   const transfer = require('./controllers/transfer.controller')
   app.post('/transfer', authJWT.verifyToken, transfer.create)
   app.get('/transfer', authJWT.verifyToken, transfer.getAll)
-  app.get('/initiate-transfer', authJWT.verifyToken, transfer.send)
-  app.put('/transfer', authJWT.verifyToken, transfer.update)
+  app.get('/initiate-transfer', authJWT.verifyToken, transfer.initiate)
   app.delete('/transfer', authJWT.verifyToken, transfer.delete)
 }
