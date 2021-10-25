@@ -4,8 +4,7 @@ const Sequelize = require('sequelize')
 const sequelize = new Sequelize(config.mysql.DB, config.mysql.USER, config.mysql.PASSWORD, {
   host: config.mysql.HOST,
   dialect: config.mysql.DIALECT,
-  operatorsAliases: false,
-
+  port: 8889,
   pool: {
     max: config.mysql.POOL.max,
     min: config.mysql.POOL.min,
@@ -36,9 +35,9 @@ db.venue = require('./models/venue.model')(sequelize, Sequelize)
 db.venue_online = require('./models/venue_online.model')(sequelize, Sequelize)
 db.venue_physical = require('./models/venue_physical.model')(sequelize, Sequelize)
 // merchant belongs to user
+
 db.merchant.belongsTo(db.user, {
   foreignKey: 'userid',
-  onUpdate: 'CASCADE',
 })
 // vendor belongs to user and merchant
 db.vendor.belongsTo(db.user, {
