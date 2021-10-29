@@ -9,7 +9,7 @@ module.exports = (app) => {
   app.post('/auth/signup', verifySignUp.checkDuplicateEmail, auth.signup)
   app.post('/auth/signin', auth.signin)
   const user = require('./controllers/user.controller')
-  app.put('/user', authJWT.verifyToken, user.update)
+  app.put('/user/:uid', authJWT.verifyToken, user.update)
   app.get('/user/:id', authJWT.verifyToken, user.findOne)
   app.get('/vendor/:uid', authJWT.verifyToken, user.findVendors)
   const consignment = require('./controllers/consignment.controller')

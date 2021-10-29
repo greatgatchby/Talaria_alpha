@@ -1,7 +1,7 @@
 let config = {
   mysql: {
     HOST: 'localhost',
-    USER: 'root',
+    USER: 'jngatchu',
     PASSWORD: '',
     DB: 'talaria',
     DIALECT: 'mysql',
