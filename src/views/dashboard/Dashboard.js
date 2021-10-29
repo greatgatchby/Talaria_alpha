@@ -175,9 +175,6 @@ const Dashboard = () => {
           />
         </CCardBody>
       </CCard>
-
-      <WidgetsBrand withCharts />
-
       <CRow>
         <CCol xs>
           <CCard className="mb-4">
