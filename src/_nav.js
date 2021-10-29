@@ -49,12 +49,7 @@ const _nav = [
     to: '/transfers',
     icon: <CIcon icon={cilTruck} customClassName="nav-icon" />,
   },
-  {
-    component: CNavItem,
-    name: 'Authentication',
-    to: '/authentication',
-    icon: <CIcon icon={cilCheck} customClassName="nav-icon" />,
-  },
+
   {
     component: CNavItem,
     name: 'Payouts',

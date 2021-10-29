@@ -4,9 +4,7 @@ const Consignments = React.lazy(() =>
   import('./views/Merchant/Consignments/consignments.component'),
 )
 const Transfers = React.lazy(() => import('./views/Merchant/Transfers/transfers.component'))
-const Authentication = React.lazy(() =>
-  import('./views/Merchant/Authentication/authenticaton.component'),
-)
+
 const Payouts = React.lazy(() => import('./views/Merchant/Payouts/payouts.component'))
 const Vendors = React.lazy(() => import('./views/Merchant/Vendors/vendors.component'))
 const Inventory = React.lazy(() => import('./views/Merchant/Inventory/inventory.component'))
@@ -70,7 +68,6 @@ const routes = [
   //talaria paths
   { path: '/consignments', name: 'consignments', component: Consignments },
   { path: '/transfers', name: 'transfers', component: Transfers },
-  { path: '/authentication', name: 'authentication', component: Authentication },
   { path: '/dashboard', name: 'Dashboard', component: Dashboard },
   { path: '/payouts', name: 'Payouts', component: Payouts },
   { path: '/vendors', name: 'Vendors', component: Vendors },
