@@ -12,6 +12,7 @@ const Venues = React.lazy(() => import('./views/Merchant/Venues/venues.component
 const ConsignmentForm = React.lazy(() =>
   import('./views/Merchant/ConsignmentForm/consignmentForm.component'),
 )
+const SneakerSearch = React.lazy(() => import('./views/Merchant/SneakerSearch/SneakerSearch'))
 //Template routes
 const Dashboard = React.lazy(() => import('./views/dashboard/Dashboard'))
 const Colors = React.lazy(() => import('./views/theme/colors/Colors'))
@@ -77,6 +78,7 @@ const routes = [
   { path: '/inventory', name: 'Inventory', component: Inventory },
   { path: '/venues', name: 'Venues', component: Venues },
   { path: '/consignmentForm', name: 'ConsignmentForm', component: ConsignmentForm },
+  { path: '/sneaker_search', name: 'SneakerSearch', component: SneakerSearch },
   //template paths
   { path: '/theme', name: 'Theme', component: Colors, exact: true },
   { path: '/theme/colors', name: 'Colors', component: Colors },
