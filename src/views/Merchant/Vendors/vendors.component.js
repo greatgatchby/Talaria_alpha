@@ -12,6 +12,9 @@ import {
   CInputGroup,
   CForm,
   CFormSelect,
+  CButton,
+  CRow,
+  CCol,
 } from '@coreui/react'
 
 class Vendors extends Component {
@@ -20,34 +23,35 @@ class Vendors extends Component {
       <>
         <CCard>
           <CCardHeader>
+            <h5>Seach Vendors:</h5>
             <CForm className={'d-flex'}>
               <CInputGroup>
                 <CFormLabel>
-                  id
+                  ID:
                   <CFormInput></CFormInput>
                 </CFormLabel>
               </CInputGroup>
               <CInputGroup>
                 <CFormLabel>
-                  Firstname
+                  Firstname:
                   <CFormInput></CFormInput>
                 </CFormLabel>
               </CInputGroup>
               <CInputGroup>
                 <CFormLabel>
-                  Lastname
+                  Lastname:
                   <CFormInput></CFormInput>
                 </CFormLabel>
               </CInputGroup>
               <CInputGroup>
                 <CFormLabel>
-                  Phone
+                  Phone:
                   <CFormInput></CFormInput>
                 </CFormLabel>
               </CInputGroup>
               <CInputGroup>
                 <CFormLabel>
-                  Country
+                  Country:
                   <CFormSelect>
                     <option>UK</option>
                     <option>USA</option>

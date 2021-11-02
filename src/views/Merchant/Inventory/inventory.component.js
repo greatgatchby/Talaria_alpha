@@ -20,6 +20,7 @@ class Inventory extends Component {
       <>
         <CCard>
           <CCardHeader>
+            <h5>Search Inventory:</h5>
             <CForm className={'d-flex'}>
               <CInputGroup>
                 <CFormLabel>
