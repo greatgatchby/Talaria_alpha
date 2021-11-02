@@ -13,6 +13,11 @@ import { CChartBar, CChartLine } from '@coreui/react-chartjs'
 import CIcon from '@coreui/icons-react'
 import { cilArrowBottom, cilArrowTop, cilOptions } from '@coreui/icons'
 
+const financeStats = [
+  { title: 'Merchandise Value', value: '29.703 Users', percent: 40, color: 'success' },
+  { title: 'Sales Revenue', value: '24.093 Users', percent: 20, color: 'info' },
+]
+
 const WidgetsDropdown = () => {
   return (
     <CRow>
@@ -28,7 +33,7 @@ const WidgetsDropdown = () => {
               </span>
             </>
           }
-          title="Users"
+          title="Vendors"
           action={
             <CDropdown alignment="end">
               <CDropdownToggle color="transparent" caret={false} className="p-0">
@@ -115,7 +120,7 @@ const WidgetsDropdown = () => {
               </span>
             </>
           }
-          title="Income"
+          title="Sales Volume"
           action={
             <CDropdown alignment="end">
               <CDropdownToggle color="transparent" caret={false} className="p-0">
@@ -201,7 +206,7 @@ const WidgetsDropdown = () => {
               </span>
             </>
           }
-          title="Conversion Rate"
+          title="Revenue"
           action={
             <CDropdown alignment="end">
               <CDropdownToggle color="transparent" caret={false} className="p-0">
@@ -274,7 +279,7 @@ const WidgetsDropdown = () => {
               </span>
             </>
           }
-          title="Sessions"
+          title="Payouts"
           action={
             <CDropdown alignment="end">
               <CDropdownToggle color="transparent" caret={false} className="p-0">
