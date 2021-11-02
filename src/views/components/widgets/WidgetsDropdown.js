@@ -12,12 +12,6 @@ import { getStyle } from '@coreui/utils'
 import { CChartBar, CChartLine } from '@coreui/react-chartjs'
 import CIcon from '@coreui/icons-react'
 import { cilArrowBottom, cilArrowTop, cilOptions } from '@coreui/icons'
-
-const financeStats = [
-  { title: 'Merchandise Value', value: '29.703 Users', percent: 40, color: 'success' },
-  { title: 'Sales Revenue', value: '24.093 Users', percent: 20, color: 'info' },
-]
-
 const WidgetsDropdown = () => {
   return (
     <CRow>

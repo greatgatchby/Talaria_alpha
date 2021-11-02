@@ -58,7 +58,10 @@ const Dashboard = () => {
   const random = (min, max) => {
     return Math.floor(Math.random() * (max - min + 1) + min)
   }
-
+  const financeStats = [
+    { title: 'Merchandise Value', value: '£29 ', percent: 40, color: 'success' },
+    { title: 'Sales Revenue', value: '£24 ', percent: 20, color: 'info' },
+  ]
   return (
     <>
       <WidgetsDropdown />
@@ -66,8 +69,8 @@ const Dashboard = () => {
         <CCardBody>
           <CRow>
             <CCol sm={5}>
-              <h4 id="traffic" className="card-title mb-0">
-                Traffic
+              <h4 id="inventorySales" className="card-title mb-0">
+                Inventory and Sales
               </h4>
               <div className="small text-medium-emphasis">January - July 2021</div>
             </CCol>
@@ -174,6 +177,19 @@ const Dashboard = () => {
             }}
           />
         </CCardBody>
+        <CCardFooter>
+          <CRow xs={{ cols: 1 }} md={{ cols: 2 }} className="text-center">
+            {financeStats.map((item, index) => (
+              <CCol className="mb-sm-2 mb-0" key={index}>
+                <div className="text-medium-emphasis">{item.title}</div>
+                <strong>
+                  {item.value} ({item.percent}%)
+                </strong>
+                <CProgress thin className="mt-2" color={item.color} value={item.percent} />
+              </CCol>
+            ))}
+          </CRow>
+        </CCardFooter>
       </CCard>
       <CRow>
         <CCol xs>
