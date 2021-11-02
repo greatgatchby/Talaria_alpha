@@ -181,7 +181,7 @@ const Dashboard = () => {
             <CCardHeader>Sales {' & '} Transactions</CCardHeader>
             <CCardBody>
               <CRow>
-                <CCol xs={12} md={6} xl={6}>
+                <CCol xs={6} md={6} xl={6}>
                   <CRow>
                     <CCol sm={6}>
                       <div className="border-start border-start-4 border-start-info py-1 px-3">

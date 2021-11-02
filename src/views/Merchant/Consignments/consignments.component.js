@@ -38,13 +38,16 @@ const AddIntake = () => {
   return (
     <>
       <CCard className={'mb-2'}>
+        <CCardHeader>
+          <h5>Create Consignment</h5>
+        </CCardHeader>
         <CCardBody>
           <CForm>
             <CRow>
               <CCol>
                 <CInputGroup>
                   <CFormLabel>
-                    Item Name
+                    Item Name:
                     <CFormInput />
                   </CFormLabel>
                 </CInputGroup>
@@ -52,7 +55,7 @@ const AddIntake = () => {
               <CCol>
                 <CInputGroup>
                   <CFormLabel>
-                    Item Category
+                    Item Category:
                     <CFormSelect>
                       <option>Footwear</option>
                       <option>Clothing</option>
@@ -64,7 +67,7 @@ const AddIntake = () => {
               <CCol>
                 <CInputGroup>
                   <CFormLabel>
-                    Item Size
+                    Item Size:
                     <CFormSelect>
                       <option>3</option>
                       <option>4</option>
@@ -79,7 +82,7 @@ const AddIntake = () => {
               <CCol>
                 <CInputGroup>
                   <CFormLabel>
-                    Asking Price
+                    Asking Price:
                     <CFormInput />
                   </CFormLabel>
                 </CInputGroup>
@@ -87,7 +90,7 @@ const AddIntake = () => {
               <CCol>
                 <CInputGroup>
                   <CFormLabel>
-                    Vendor
+                    Vendor:
                     <CFormInput />
                   </CFormLabel>
                 </CInputGroup>
@@ -95,7 +98,7 @@ const AddIntake = () => {
               <CCol>
                 <CInputGroup>
                   <CFormLabel>
-                    Policy
+                    Policy:
                     <CFormSelect>
                       <option>1</option>
                       <option>2</option>
@@ -118,11 +121,12 @@ const Filter = () => {
   return (
     <>
       <CForm>
+        <h5>Search Consignments</h5>
         <CRow>
           <CCol>
             <CInputGroup>
               <CFormLabel>
-                Item Name
+                Item Name:
                 <CFormInput></CFormInput>
               </CFormLabel>
             </CInputGroup>
@@ -130,7 +134,7 @@ const Filter = () => {
           <CCol>
             <CInputGroup>
               <CFormLabel>
-                Item Size
+                Item Size:
                 <CFormSelect>
                   <option>3</option>
                   <option>4</option>
@@ -145,7 +149,7 @@ const Filter = () => {
           <CCol>
             <CInputGroup>
               <CFormLabel>
-                Asking Price
+                Asking Price:
                 <CFormInput></CFormInput>
               </CFormLabel>
             </CInputGroup>
@@ -153,7 +157,7 @@ const Filter = () => {
           <CCol>
             <CInputGroup>
               <CFormLabel>
-                Vendor
+                Vendor:
                 <CFormSelect>
                   <option>Mark Otto</option>
                   <option>Jacob Thornton</option>
@@ -165,7 +169,7 @@ const Filter = () => {
           <CCol>
             <CInputGroup>
               <CFormLabel>
-                Status
+                Status:
                 <CFormSelect>
                   <option>Requested</option>
                   <option>Confirmed</option>

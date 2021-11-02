@@ -3,7 +3,7 @@ import React from 'react'
 const Consignments = React.lazy(() =>
   import('./views/Merchant/Consignments/consignments.component'),
 )
-const Transfers = React.lazy(() => import('./views/Merchant/Transfers/transfers.component'))
+const Transfers = React.lazy(() => import('./views/Merchant/Intakes/Intakes.component'))
 
 const Payouts = React.lazy(() => import('./views/Merchant/Payouts/payouts.component'))
 const Vendors = React.lazy(() => import('./views/Merchant/Vendors/vendors.component'))
