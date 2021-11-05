@@ -1,7 +1,13 @@
 import React from 'react'
 import { AppContent, AppSidebar, AppFooter, AppHeader } from '../components/index'
+import { Redirect } from 'react-router-dom'
+import { useSelector } from 'react-redux'
 
 const DefaultLayout = () => {
+  const { isLoggedIn } = useSelector((state) => state.auth)
+  /*if (!isLoggedIn) {
+    return <Redirect to="/login" />
+  }*/
   return (
     <div>
       <AppSidebar />
