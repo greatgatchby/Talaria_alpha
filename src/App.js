@@ -1,7 +1,6 @@
-import React, { Component } from 'react'
-import { HashRouter, Redirect, Route, Switch } from 'react-router-dom'
+import React from 'react'
+import { HashRouter, Route, Switch } from 'react-router-dom'
 import './scss/style.scss'
-import { useSelector } from 'react-redux'
 
 const loading = (
   <div className="pt-3 text-center">

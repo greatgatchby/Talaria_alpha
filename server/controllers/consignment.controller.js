@@ -8,25 +8,31 @@ exports.create = (req, res) => {
     where: {
       email: req.body.email,
     },
-  }).then((user) => {
-    if (!user) {
-      res.status(404).send('user not found')
-    } else {
-      Consignment.create({
-        userid: req.body.userid,
-        item_name: req.body.item_name,
-        item_size: req.body.item_size,
-        asking_price: req.body.asking_price,
-        policyid: req.body.policyid,
-        date_consigned: dateTime(),
-        date_sold: req.body.date_sold,
-        status_code: req.body.status_code,
-        venue: req.body.venue,
-        merchantid: req.body.merchantid,
-        item_unit: req.body.item_unit,
-      })
-    }
   })
+    .then((user) => {
+      if (!user) {
+        res.status(404).send('user not found')
+      } else {
+        Consignment.create({
+          userid: req.body.userid,
+          item_name: req.body.item_name,
+          item_size: req.body.item_size,
+          asking_price: req.body.asking_price,
+          policyid: req.body.policyid,
+          date_consigned: dateTime(),
+          date_sold: req.body.date_sold,
+          status_code: req.body.status_code,
+          venue: req.body.venue,
+          merchantid: req.body.merchantid,
+          item_unit: req.body.item_unit,
+        }).catch((err) => {
+          if (err) res.status(500).send({ message: err.message })
+        })
+      }
+    })
+    .catch((err) => {
+      if (err) res.status(500).send({ message: err.message })
+    })
 }
 
 exports.confirm = (req, res) => {

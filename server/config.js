@@ -1,7 +1,7 @@
 let config = {
   mysql: {
     HOST: 'localhost',
-    USER: 'jngatchu',
+    USER: 'root',
     PASSWORD: '',
     DB: 'talaria',
     DIALECT: 'mysql',
@@ -22,6 +22,10 @@ let config = {
     appId: '1:464833975213:web:eb65c5c6ea377bef45c724',
     measurementId: 'G-X3F0BV7ECF',
     serviceAccount: 'firebase-adminsdk-e97ey@talaria-270af.iam.gserviceaccount.com',
+  },
+  plaid: {
+    PLAID_CLIENT_ID: '5ee69e7df9c7ee0013150dc8',
+    PLAID_SECRET: '8519b849cce770ff99ffc35e69c291',
   },
 }
 
