@@ -57,7 +57,7 @@ const Login = (props) => {
     setValidated(true)
   }
   if (isLoggedIn) {
-    return <Redirect to="/" />
+    return <Redirect to="/dashboard" />
   }
   return (
     <div className="bg-light min-vh-100 d-flex flex-row align-items-center">
@@ -81,7 +81,6 @@ const Login = (props) => {
                         name="email"
                         value={email}
                         onChange={onChangeEmail}
-                        defaultValue={'example@email.com'}
                         required
                       />
                     </CInputGroup>
@@ -96,7 +95,6 @@ const Login = (props) => {
                         placeholder="Password"
                         autoComplete="current-password"
                         value={password}
-                        defaultValue={'12345'}
                         required
                       />
                     </CInputGroup>
