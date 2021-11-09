@@ -1,6 +1,7 @@
 import { combineReducers } from 'redux'
 import auth from './auth'
 import message from './message'
+import consignment from './consignment'
 
 const initialState = {
   sidebarShow: true,
@@ -19,6 +20,7 @@ const rootReducer = combineReducers({
   nav: changeState,
   auth,
   message,
+  consignment,
 })
 
 export default rootReducer

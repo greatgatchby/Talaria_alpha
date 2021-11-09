@@ -1,7 +1,8 @@
-import React from 'react'
+import React, { useCallback } from 'react'
 import {
   CAvatar,
   CBadge,
+  CButton,
   CDropdown,
   CDropdownDivider,
   CDropdownHeader,
@@ -23,14 +24,19 @@ import {
 import CIcon from '@coreui/icons-react'
 
 import avatar8 from './../../assets/images/avatars/8.jpg'
-
+import { logout } from '../../actions/auth'
+import { useDispatch } from 'react-redux'
 const AppHeaderDropdown = () => {
+  const dispatch = useDispatch()
+  const logOut = () => {
+    dispatch(logout())
+  }
   return (
     <CDropdown variant="nav-item">
       <CDropdownToggle placement="bottom-end" className="py-0" caret={false}>
         <CAvatar src={avatar8} size="md" />
       </CDropdownToggle>
-      <CDropdownMenu className="pt-0" placement="bottom-end">
+      <CDropdownMenu className="pt-0 pb-0" placement="bottom-end">
         <CDropdownHeader className="bg-light fw-semibold py-2">Account</CDropdownHeader>
         <CDropdownItem href="#">
           <CIcon icon={cilBell} className="me-2" />
@@ -83,10 +89,11 @@ const AppHeaderDropdown = () => {
             42
           </CBadge>
         </CDropdownItem>
-        <CDropdownDivider />
-        <CDropdownItem href="#">
-          <CIcon icon={cilLockLocked} className="me-2" />
-          Lock Account
+        <CDropdownItem className="p-0 m-0">
+          <CButton onClick={logOut} className={'w-100 rounded-bottom rounded-0'}>
+            <CIcon icon={cilLockLocked} className="me-2" />
+            Log Out
+          </CButton>
         </CDropdownItem>
       </CDropdownMenu>
     </CDropdown>

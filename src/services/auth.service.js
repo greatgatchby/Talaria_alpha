@@ -14,6 +14,7 @@ const login = (email, password) => {
 const logout = () => {
   localStorage.removeItem('user')
 }
+
 const register = (
   email,
   password,

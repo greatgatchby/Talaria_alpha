@@ -1,13 +1,47 @@
 import {
   CREATE_CONSIGNMENT,
   CREATE_CONSIGNMENT_FAIL,
+  GET_ALL_CONSIGNMENTS,
   UPDATE_CONSIGNMENT_FAIL,
   CONFIRM_CONSIGNMENT,
   AUTHENTICATE_CONSIGNMENT,
   REJECT_CONSIGNMENT,
+  REQUEST_FAIL,
   SET_MESSAGE,
 } from './type'
 import consignmentService from '../services/consignment.service'
+export const retrieveConsignments = (dispatch) => {
+  return consignmentService.getAllConsignments().then(
+    (response) => {
+      dispatch({
+        type: GET_ALL_CONSIGNMENTS,
+      })
+
+      dispatch({
+        type: SET_MESSAGE,
+        payload: response.data,
+      })
+      return Promise.resolve
+    },
+    (error) => {
+      const message =
+        (error.response && error.response.data && error.response.data.message) ||
+        error.message ||
+        error.toString()
+
+      dispatch({
+        type: REQUEST_FAIL,
+      })
+
+      dispatch({
+        type: SET_MESSAGE,
+        payload: message,
+      })
+
+      return Promise.reject()
+    },
+  )
+}
 export const createConsignment =
   (
     email,

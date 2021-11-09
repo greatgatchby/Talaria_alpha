@@ -1,6 +1,7 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import {
   CButton,
+  CCard,
   CCarousel,
   CCarouselItem,
   CCol,
@@ -22,9 +23,25 @@ import {
 import slide1 from '../../../assets/images/Sneaker_Photos/IMG_2792.png'
 import slide2 from '../../../assets/images/Sneaker_Photos/IMG_2797.png'
 import slide3 from '../../../assets/images/Sneaker_Photos/IMG_2804.png'
-
+import ConsignmentService from '../../../services/consignment.service'
+import { useDispatch } from 'react-redux'
 const ConsignmentTable = () => {
   const [visible, setVisible] = useState(false)
+  const [consignments, setConsignments] = useState('')
+  const dispatch = useDispatch()
+  useEffect(() => {
+    ConsignmentService.getAllConsignments().then(
+      (response) => {
+        setConsignments(JSON.stringify(response.data))
+      },
+      (error) => {
+        const _consignment =
+          (error.response && error.response.data) || error.message || error.toString()
+
+        setConsignments(_consignment)
+      },
+    )
+  }, [dispatch])
   return (
     <>
       <CModal visible={visible} onDismiss={() => setVisible(false)}>
@@ -139,6 +156,9 @@ const ConsignmentTable = () => {
           </CTableRow>
         </CTableBody>
       </CTable>
+      <CCard>
+        <ul>{consignments.consignmentid}</ul>
+      </CCard>
     </>
   )
 }

@@ -1,10 +1,11 @@
+const plaid = require('plaid')
 const config = require('./config')
 
 const Sequelize = require('sequelize')
 const sequelize = new Sequelize(config.mysql.DB, config.mysql.USER, config.mysql.PASSWORD, {
   host: config.mysql.HOST,
   dialect: config.mysql.DIALECT,
-  port: 8889,
+  port: 3306,
   pool: {
     max: config.mysql.POOL.max,
     min: config.mysql.POOL.min,

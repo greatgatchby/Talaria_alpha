@@ -5,7 +5,7 @@ import { useSelector } from 'react-redux'
 
 const DefaultLayout = () => {
   const { isLoggedIn } = useSelector((state) => state.auth)
-  if (!isLoggedIn === true) {
+  if (isLoggedIn !== true) {
     return <Redirect to="/login" />
   }
   return (
