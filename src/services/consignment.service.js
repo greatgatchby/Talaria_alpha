@@ -4,7 +4,7 @@ import authHeader from './auth-header'
 const API_URL = 'http://localhost:3001/consignment'
 
 const getAllConsignments = () => {
-  return axios.get(API_URL)
+  return axios.get(API_URL, { headers: authHeader() })
 }
 
 const createConsignment = (
