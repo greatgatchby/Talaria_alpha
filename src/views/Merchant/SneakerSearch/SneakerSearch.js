@@ -1,4 +1,5 @@
-import React from 'react'
+/* eslint-disable prettier/prettier */
+import React, { useState, useEffect } from 'react'
 import {
   CFormInput,
   CFormLabel,
@@ -12,10 +13,21 @@ import {
   CTableHeaderCell,
   CContainer,
   CCard,
-  CTableRow,
+  CTableRow, CButton,
 } from '@coreui/react/dist'
+import sneakerService from '../../../services/sneakerSearch.service'
 
 const SneakerSearch = () => {
+  const [results, setResults] = useState([])
+  sneakerService.searchSneakers('red').then((response) => setResults(response.data),       (error) => {
+    const _results =
+      (error.response && error.response.data && error.response.data.message) ||
+      error.message ||
+      error.parse()
+
+    setResults(_results)
+  },)
+  console.log(results)
   return (
     <>
       <CRow>
@@ -58,6 +70,7 @@ const SneakerSearch = () => {
               </CTableBody>
               <CTableFoot></CTableFoot>
             </CTable>
+            {results}
           </CCard>
         </CContainer>
       </CRow>

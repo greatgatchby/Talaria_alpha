@@ -35,12 +35,15 @@ exports.create = (req, res) => {
 }
 //TODO get all transfers
 exports.getAll = (req, res) => {
-  Transfer.findAll({ where: { merchantid: req.body.merchantid } })
+  Transfer.findAll({ where: { sender_billingid: req.body.merchantid } }).then((data) => {
+    res.send(data).catch((err) => {
+      res.status(500).send({ message: err.message })
+    })
+  })
 }
 //TODO create a payment link token using plaid api
 
 //sender will always be a merchant and recipient will always be a vendor
-exports.initiate = (req, res) => {
-}
+exports.initiate = (req, res) => {}
 
 exports.delete = (req, res) => {}

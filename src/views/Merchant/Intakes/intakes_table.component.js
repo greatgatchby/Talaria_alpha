@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import {
   CButton,
   CCard,
@@ -23,8 +23,17 @@ import {
   CFormSelect,
 } from '@coreui/react/dist'
 
+import IntakeService from '../../../services/intake.service'
+
 const IntakesTable = () => {
   const [visible, setVisible] = useState(false)
+  const [intakes, setIntakes] = useState([])
+  useEffect(() => {
+    IntakeService.getAllIntakes().then((response) => {
+      setIntakes(response.data)
+      console.log(response.data)
+    })
+  }, [])
   return (
     <>
       <CModal visible={visible} onClose={() => setVisible(false)}>
@@ -118,6 +127,17 @@ const IntakesTable = () => {
               </CTableDataCell>
               <CTableDataCell>In Transit</CTableDataCell>
             </CTableRow>
+            {/* eslint-disable-next-line prettier/prettier */}
+            {intakes.map(intake => (
+              <CTableRow key={intake.id}>
+                <CTableDataCell>{intake.id}</CTableDataCell>
+                <CTableDataCell>{intake.consignmentid}</CTableDataCell>
+                <CTableDataCell>some text</CTableDataCell>
+                <CTableDataCell>{intake.intake_type}</CTableDataCell>
+                <CTableDataCell>Some text</CTableDataCell>
+                <CTableDataCell>{intake.status}</CTableDataCell>
+              </CTableRow>
+            ))}
           </CTableBody>
         </CTable>
       </CCard>

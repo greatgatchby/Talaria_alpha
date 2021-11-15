@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import {
   CButton,
   CCard,
@@ -13,7 +13,59 @@ import {
   CRow,
 } from '@coreui/react'
 
+import { createConsignment } from '../../../actions/consignment'
+import { useDispatch } from 'react-redux'
+
 const AddIntake = () => {
+  const [itemName, setItemName] = useState('')
+  const [itemSize, setItemSize] = useState('')
+  const [itemCategory, setItemCategory] = useState('')
+  const [askingPrice, setAskingPrice] = useState('')
+  const [policyId, setPolicyId] = useState('')
+  const [vendor, setVendor] = useState('')
+
+  const onChangeItemName = (e) => {
+    const itemName = e.target.value
+    setItemName(itemName)
+  }
+  const onChangeItemSize = (e) => {
+    const itemSize = e.target.value
+    setItemSize(itemSize)
+  }
+  const onChangeItemCategory = (e) => {
+    const itemCategory = e.target.value
+    setItemCategory(itemCategory)
+  }
+  const onChangeAskingPrice = (e) => {
+    const askingPrice = e.target.value
+    setAskingPrice(askingPrice)
+  }
+  const onChangePolicyId = (e) => {
+    const policyId = e.target.value
+    setPolicyId(policyId)
+  }
+  const onChangeVendor = (e) => {
+    const vendor = e.target.value
+    setVendor(vendor)
+  }
+  const dispatch = useDispatch()
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    dispatch(
+      createConsignment(
+        vendor,
+        itemName,
+        itemSize,
+        askingPrice,
+        policyId,
+        null,
+        null,
+        'requested',
+        null,
+        1,
+      ),
+    ).then(console.log('submitted'))
+  }
   return (
     <>
       <CCard className={'mb-2'}>
@@ -25,7 +77,12 @@ const AddIntake = () => {
             <CRow>
               <CCol>
                 <CInputGroup>
-                  <CFormLabel>
+                  <CFormLabel
+                    name={'itemName'}
+                    value={itemName}
+                    onChange={onChangeItemName}
+                    required
+                  >
                     Item Name:
                     <CFormInput />
                   </CFormLabel>

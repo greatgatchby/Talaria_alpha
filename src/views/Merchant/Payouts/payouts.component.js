@@ -17,6 +17,7 @@ import {
 } from '@coreui/react'
 import { getStyle, hexToRgba } from '@coreui/utils'
 import { CChartLine } from '@coreui/react-chartjs/dist'
+import PayoutsList from './payoutsList.component'
 
 class Payout extends Component {
   render() {
@@ -136,31 +137,7 @@ class Payout extends Component {
             </CForm>
           </CCardHeader>
           <CCardBody>
-            <CTable>
-              <CTableHead>
-                <CTableRow>
-                  <CTableHeaderCell>#id</CTableHeaderCell>
-                  <CTableHeaderCell>item Name</CTableHeaderCell>
-                  <CTableHeaderCell>item size</CTableHeaderCell>
-                  <CTableHeaderCell>Asking Price</CTableHeaderCell>
-                  <CTableHeaderCell>SKU</CTableHeaderCell>
-                  <CTableHeaderCell colspan={2}>Payout Amount</CTableHeaderCell>
-                </CTableRow>
-              </CTableHead>
-              <CTableBody>
-                <CTableRow>
-                  <CTableDataCell>123</CTableDataCell>
-                  <CTableDataCell>Jordan 1 chicago</CTableDataCell>
-                  <CTableDataCell>UK 9</CTableDataCell>
-                  <CTableDataCell>£123</CTableDataCell>
-                  <CTableDataCell>Jor-Nik-Chi-202</CTableDataCell>
-                  <CTableDataCell>£{123 / 0.92}</CTableDataCell>
-                  <CTableDataCell className={'d-flex justify-content-end'}>
-                    <CButton>Pay Now</CButton>
-                  </CTableDataCell>
-                </CTableRow>
-              </CTableBody>
-            </CTable>
+            <PayoutsList />
           </CCardBody>
         </CCard>
       </>

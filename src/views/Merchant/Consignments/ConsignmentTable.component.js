@@ -24,24 +24,26 @@ import slide1 from '../../../assets/images/Sneaker_Photos/IMG_2792.png'
 import slide2 from '../../../assets/images/Sneaker_Photos/IMG_2797.png'
 import slide3 from '../../../assets/images/Sneaker_Photos/IMG_2804.png'
 import ConsignmentService from '../../../services/consignment.service'
+
 const ConsignmentTable = () => {
   const [visible, setVisible] = useState(false)
-  const [consignments, setConsignments] = useState('')
+  const [consignments, setConsignments] = useState([])
   useEffect(() => {
     ConsignmentService.getAllConsignments().then(
       (response) => {
-        setConsignments(JSON.stringify(response.data))
+        setConsignments(response.data)
       },
       (error) => {
         const _consignments =
           (error.response && error.response.data && error.response.data.message) ||
           error.message ||
-          error.toString()
+          error.parse()
 
         setConsignments(_consignments)
       },
     )
   }, [])
+  console.log(consignments)
   return (
     <>
       <CModal visible={visible} onDismiss={() => setVisible(false)}>
@@ -96,69 +98,32 @@ const ConsignmentTable = () => {
             <CTableHeaderCell scope="col">Item Name</CTableHeaderCell>
             <CTableHeaderCell scope="col">Item Size</CTableHeaderCell>
             <CTableHeaderCell scope="col">Firstname</CTableHeaderCell>
-            <CTableHeaderCell scope="col">Lastname</CTableHeaderCell>
             <CTableHeaderCell scope="col">Asking price</CTableHeaderCell>
             <CTableHeaderCell scope="col">payout</CTableHeaderCell>
             <CTableHeaderCell scope="col">Status</CTableHeaderCell>
           </CTableRow>
         </CTableHead>
         <CTableBody>
-          {/* eslint-disable-next-line no-undef */}
-          <CTableRow onClick={() => setVisible(!visible)}>
-            <CTableHeaderCell scope="row">
-              <CFormCheck />
-            </CTableHeaderCell>
-            <CTableHeaderCell scope="row">1</CTableHeaderCell>
-            <CTableDataCell>Jordan 4 Lightning</CTableDataCell>
-            <CTableDataCell>UK 8</CTableDataCell>
-            <CTableDataCell>Mark</CTableDataCell>
-            <CTableDataCell>Otto</CTableDataCell>
-            <CTableDataCell>£230</CTableDataCell>
-            <CTableDataCell>£201</CTableDataCell>
-            <CTableDataCell className={'text-warning'}>Requested</CTableDataCell>
-          </CTableRow>
-          <CTableRow>
-            <CTableHeaderCell scope="row">
-              <CFormCheck />
-            </CTableHeaderCell>
-            <CTableHeaderCell scope="row">2</CTableHeaderCell>
-            <CTableDataCell>Nike x Off White Air presto - the ten</CTableDataCell>
-            <CTableDataCell>UK 6</CTableDataCell>
-            <CTableDataCell>Jacob</CTableDataCell>
-            <CTableDataCell>Thornton</CTableDataCell>
-            <CTableDataCell>£800</CTableDataCell>
-            <CTableDataCell>£732</CTableDataCell>
-            <CTableDataCell className={'text-info'}>Authenticated</CTableDataCell>
-          </CTableRow>
-          <CTableRow>
-            <CTableHeaderCell scope="row">
-              <CFormCheck />
-            </CTableHeaderCell>
-            <CTableHeaderCell scope="row">3</CTableHeaderCell>
-            <CTableDataCell colSpan="1">Yeezy 350 v3 Dark Glow</CTableDataCell>
-            <CTableDataCell colSpan="1">UK 4</CTableDataCell>
-            <CTableDataCell colSpan="2">Larry the Bird</CTableDataCell>
-            <CTableDataCell>£310</CTableDataCell>
-            <CTableDataCell>£283.65</CTableDataCell>
-            <CTableDataCell className={'text-success'}>On Sale</CTableDataCell>
-          </CTableRow>
-          <CTableRow>
-            <CTableHeaderCell scope="row">
-              <CFormCheck />
-            </CTableHeaderCell>
-            <CTableHeaderCell scope="row">3</CTableHeaderCell>
-            <CTableDataCell colSpan="1">Yeezy 350 v3 Dark Glow</CTableDataCell>
-            <CTableDataCell colSpan="1">UK 4</CTableDataCell>
-            <CTableDataCell colSpan="2">Larry the Bird</CTableDataCell>
-            <CTableDataCell>£310</CTableDataCell>
-            <CTableDataCell>£283.65</CTableDataCell>
-            <CTableDataCell className={'text-danger'}>Rejected</CTableDataCell>
-          </CTableRow>
+          {/* eslint-disable-next-line */}
+          {consignments.map(consignment => (
+            <CTableRow onClick={() => setVisible(!visible)} key={consignment.consignmentid}>
+              <CTableDataCell scope="row">
+                <CFormCheck />
+              </CTableDataCell>
+              <CTableDataCell>{consignment.consignmentid}</CTableDataCell>
+              <CTableDataCell>{consignment.item_name}</CTableDataCell>
+              <CTableDataCell>{consignment.item_size}</CTableDataCell>
+              <CTableDataCell>{consignment.userid}</CTableDataCell>
+              <CTableDataCell>{consignment.asking_price}</CTableDataCell>
+              <CTableDataCell>
+                {Math.round(consignment.asking_price * 0.2).toFixed(2)}
+              </CTableDataCell>
+              <CTableDataCell className={'text-info'}>{consignment.status_code}</CTableDataCell>
+            </CTableRow>
+          ))}
         </CTableBody>
       </CTable>
-      <CCard>{consignments}</CCard>
     </>
   )
 }
-
 export default ConsignmentTable

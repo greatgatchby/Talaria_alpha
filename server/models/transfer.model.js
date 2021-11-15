@@ -18,6 +18,9 @@ module.exports = (sequelize, Sequelize) => {
       createdAt: {
         type: Sequelize.STRING,
       },
+      merchantid: {
+        type: Sequelize.STRING,
+      },
     },
     {
       tableName: 'transfer',

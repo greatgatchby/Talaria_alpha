@@ -20,7 +20,6 @@ const rootReducer = combineReducers({
   nav: changeState,
   auth,
   message,
-  consignments,
 })
 
 export default rootReducer

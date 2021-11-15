@@ -23,7 +23,7 @@ module.exports = (sequelize, Sequelize) => {
         type: Sequelize.STRING,
       },
       merchantid: {
-        type: Sequelize.INTEGER,
+        type: Sequelize.STRING,
       },
     },
     {
