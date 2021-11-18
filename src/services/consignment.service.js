@@ -11,6 +11,7 @@ const getAllConsignments = () => {
 }
 
 const createConsignment = (
+  userid,
   item_name,
   item_size,
   asking_price,
@@ -23,7 +24,8 @@ const createConsignment = (
 ) => {
   return axios
     .post(API_URL, {
-      userid: user.userid,
+      headers: authHeader(),
+      userid,
       item_name,
       item_size,
       asking_price,
@@ -32,7 +34,7 @@ const createConsignment = (
       date_sold,
       status_code,
       venue,
-      merchantid,
+      merchantid: user.id,
     })
     .then((response) => {
       return response.data

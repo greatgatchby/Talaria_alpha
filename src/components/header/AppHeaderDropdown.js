@@ -1,10 +1,8 @@
 import React, { useCallback } from 'react'
 import {
   CAvatar,
-  CBadge,
   CButton,
   CDropdown,
-  CDropdownDivider,
   CDropdownHeader,
   CDropdownItem,
   CDropdownMenu,
@@ -26,6 +24,7 @@ import CIcon from '@coreui/icons-react'
 import avatar8 from './../../assets/images/avatars/8.jpg'
 import { logout } from '../../actions/auth'
 import { useDispatch } from 'react-redux'
+import { Link } from 'react-router-dom'
 const AppHeaderDropdown = () => {
   const dispatch = useDispatch()
   const logOut = () => {
@@ -34,22 +33,28 @@ const AppHeaderDropdown = () => {
   return (
     <CDropdown variant="nav-item">
       <CDropdownToggle placement="bottom-end" className="py-0" caret={false}>
-        <CAvatar src={avatar8} size="md" />
+        <CAvatar src={avatar8} size="lg" />
       </CDropdownToggle>
       <CDropdownMenu className="pt-0 pb-0" placement="bottom-end">
         <CDropdownHeader className="bg-light fw-semibold py-2">Account</CDropdownHeader>
-        <CDropdownItem href="#">
-          <CIcon icon={cilUser} className="me-2" />
-          Profile
-        </CDropdownItem>
-        <CDropdownItem href="#">
-          <CIcon icon={cilSettings} className="me-2" />
-          Settings
-        </CDropdownItem>
-        <CDropdownItem href="#">
-          <CIcon icon={cilCreditCard} className="me-2" />
-          Billing
-        </CDropdownItem>
+        <Link to={'/profile'}>
+          <CDropdownItem>
+            <CIcon icon={cilUser} className="me-2" />
+            Profile
+          </CDropdownItem>
+        </Link>
+        <Link to={'/settings'}>
+          <CDropdownItem href="#">
+            <CIcon icon={cilSettings} className="me-2" />
+            Settings
+          </CDropdownItem>
+        </Link>
+        <Link to={'/billing'}>
+          <CDropdownItem href="#">
+            <CIcon icon={cilCreditCard} className="me-2" />
+            Billing
+          </CDropdownItem>
+        </Link>
         <CDropdownItem className="p-0 m-0">
           <CButton onClick={logOut} className={'w-100 rounded-bottom rounded-0'}>
             <CIcon icon={cilLockLocked} className="me-2" />

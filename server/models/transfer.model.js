@@ -2,17 +2,14 @@ module.exports = (sequelize, Sequelize) => {
   const transfer = sequelize.define(
     'transfer',
     {
-      id: {
+      transferid: {
         type: Sequelize.INTEGER,
         primaryKey: true,
       },
       consignmentid: {
         type: Sequelize.STRING,
       },
-      sender_billing: {
-        type: Sequelize.STRING,
-      },
-      recipient_billing: {
+      vendorid: {
         type: Sequelize.STRING,
       },
       createdAt: {

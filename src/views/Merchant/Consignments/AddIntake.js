@@ -22,6 +22,7 @@ const AddIntake = () => {
   const [itemCategory, setItemCategory] = useState('')
   const [askingPrice, setAskingPrice] = useState('')
   const [policyId, setPolicyId] = useState('')
+  const [intakeType, setIntakeType] = useState('')
   const [vendor, setVendor] = useState('')
 
   const onChangeItemName = (e) => {
@@ -48,6 +49,10 @@ const AddIntake = () => {
     const vendor = e.target.value
     setVendor(vendor)
   }
+  const onChangeIntakeType = (e) => {
+    const intakeType = e.target.value
+    setIntakeType(intakeType)
+  }
   const dispatch = useDispatch()
   const handleSubmit = (e) => {
     e.preventDefault()
@@ -61,7 +66,7 @@ const AddIntake = () => {
         null,
         null,
         'requested',
-        null,
+        1,
         1,
       ),
     ).then(console.log('submitted'))
@@ -73,18 +78,18 @@ const AddIntake = () => {
           <h5>Create Consignment</h5>
         </CCardHeader>
         <CCardBody>
-          <CForm>
+          <CForm noValidate validated onSubmit={handleSubmit}>
             <CRow>
               <CCol>
                 <CInputGroup>
-                  <CFormLabel
-                    name={'itemName'}
-                    value={itemName}
-                    onChange={onChangeItemName}
-                    required
-                  >
+                  <CFormLabel>
                     Item Name:
-                    <CFormInput />
+                    <CFormInput
+                      name={'itemName'}
+                      value={itemName}
+                      onChange={onChangeItemName}
+                      required
+                    />
                   </CFormLabel>
                 </CInputGroup>
               </CCol>
@@ -92,7 +97,12 @@ const AddIntake = () => {
                 <CInputGroup>
                   <CFormLabel>
                     Item Category:
-                    <CFormSelect>
+                    <CFormSelect
+                      name={'itemCategory'}
+                      value={itemCategory}
+                      onChange={onChangeItemCategory}
+                      required
+                    >
                       <option>Footwear</option>
                       <option>Clothing</option>
                       <option>Accessories</option>
@@ -104,7 +114,12 @@ const AddIntake = () => {
                 <CInputGroup>
                   <CFormLabel>
                     Item Size:
-                    <CFormSelect>
+                    <CFormSelect
+                      name={'itemSize'}
+                      value={itemSize}
+                      onChange={onChangeItemSize}
+                      required
+                    >
                       <option>3</option>
                       <option>4</option>
                       <option>4.5</option>
@@ -119,7 +134,12 @@ const AddIntake = () => {
                 <CInputGroup>
                   <CFormLabel>
                     Asking Price:
-                    <CFormInput />
+                    <CFormInput
+                      name={'askingPrice'}
+                      value={askingPrice}
+                      onChange={onChangeAskingPrice}
+                      required
+                    />
                   </CFormLabel>
                 </CInputGroup>
               </CCol>
@@ -127,7 +147,7 @@ const AddIntake = () => {
                 <CInputGroup>
                   <CFormLabel>
                     Vendor:
-                    <CFormInput />
+                    <CFormInput name={'vendor'} value={vendor} onChange={onChangeVendor} required />
                   </CFormLabel>
                 </CInputGroup>
               </CCol>
@@ -135,7 +155,12 @@ const AddIntake = () => {
                 <CInputGroup>
                   <CFormLabel>
                     Policy:
-                    <CFormSelect>
+                    <CFormSelect
+                      name={'policyid'}
+                      value={policyId}
+                      onChange={onChangePolicyId}
+                      required
+                    >
                       <option>1</option>
                       <option>2</option>
                       <option>3</option>
@@ -143,11 +168,27 @@ const AddIntake = () => {
                   </CFormLabel>
                 </CInputGroup>
               </CCol>
+              <CCol>
+                <CInputGroup>
+                  <CFormLabel>
+                    Intake type:
+                    <CFormSelect
+                      name={'intakeType'}
+                      value={intakeType}
+                      onChange={onChangeIntakeType}
+                      required
+                    >
+                      <option>Dropped</option>
+                      <option>Shipped</option>
+                    </CFormSelect>
+                  </CFormLabel>
+                </CInputGroup>
+              </CCol>
             </CRow>
+            <CButton type={'submit'} className={'btn btn-primary '}>
+              Add
+            </CButton>
           </CForm>
-          <CButton type={'submit'} className={'btn btn-primary '}>
-            Add
-          </CButton>
         </CCardBody>
       </CCard>
     </>

@@ -62,10 +62,10 @@ module.exports = (app) => {
   app.put('/venue', authJWT.verifyToken, venue.update)
   app.delete('/venue', authJWT.verifyToken, venue.delete)
   app.delete('/venue', authJWT.verifyToken, venue.deleteAll)
-  //functions for transfer
+  //functions for payouts
   const transfer = require('./controllers/transfer.controller')
   app.post('/transfer', authJWT.verifyToken, transfer.create)
-  app.get('/transfer/:userid', authJWT.verifyToken, transfer.getAll)
+  app.get('/transfer'/*, authJWT.verifyToken*/, transfer.getAll)
   app.get('/initiate-transfer/:id', authJWT.verifyToken, transfer.initiate)
   app.delete('/transfer', authJWT.verifyToken, transfer.delete)
 }
