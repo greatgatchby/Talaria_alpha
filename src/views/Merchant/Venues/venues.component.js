@@ -18,6 +18,8 @@ import {
   CCol,
 } from '@coreui/react'
 
+import AddVenue from './AddVenue'
+
 class Venues extends Component {
   render() {
     return (
