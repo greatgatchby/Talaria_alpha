@@ -2,13 +2,16 @@ import axios from 'axios'
 import authHeader from './auth-header'
 
 const API_URL = 'http://localhost:3001/consignment'
+const user = JSON.parse(localStorage.getItem('user'))
 
 const getAllConsignments = () => {
-  return axios.get(API_URL)
+  return axios.get(API_URL + '/' + user.id, {
+    headers: authHeader(),
+  })
 }
 
 const createConsignment = (
-  email,
+  userid,
   item_name,
   item_size,
   asking_price,
@@ -21,7 +24,8 @@ const createConsignment = (
 ) => {
   return axios
     .post(API_URL, {
-      email,
+      headers: authHeader(),
+      userid,
       item_name,
       item_size,
       asking_price,
@@ -30,7 +34,7 @@ const createConsignment = (
       date_sold,
       status_code,
       venue,
-      merchantid,
+      merchantid: user.id,
     })
     .then((response) => {
       return response.data

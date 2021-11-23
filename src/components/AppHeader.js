@@ -10,6 +10,13 @@ import {
   CHeaderToggler,
   CNavLink,
   CNavItem,
+  CDropdownToggle,
+  CDropdown,
+  CDropdownMenu,
+  CDropdownItem,
+  CRow,
+  CCol,
+  CBadge,
 } from '@coreui/react'
 import CIcon from '@coreui/icons-react'
 import { cilBell, cilEnvelopeOpen, cilList, cilMenu } from '@coreui/icons'
@@ -51,19 +58,17 @@ const AppHeader = () => {
         </CHeaderNav>
         <CHeaderNav>
           <CNavItem>
-            <CNavLink href="#">
-              <CIcon icon={cilBell} size="lg" />
-            </CNavLink>
-          </CNavItem>
-          <CNavItem>
-            <CNavLink href="#">
-              <CIcon icon={cilList} size="lg" />
-            </CNavLink>
-          </CNavItem>
-          <CNavItem>
-            <CNavLink href="#">
-              <CIcon icon={cilEnvelopeOpen} size="lg" />
-            </CNavLink>
+            <CDropdown variant="nav-item">
+              <CDropdownToggle caret={false}>
+                <CIcon icon={cilBell} size="lg" />
+              </CDropdownToggle>
+              <CDropdownMenu placement="bottom-end">
+                <CDropdownItem className={'d-flex'}>
+                  <p className={'me-2'}>Notification</p>
+                  <p>2 mins ago</p>
+                </CDropdownItem>
+              </CDropdownMenu>
+            </CDropdown>
           </CNavItem>
         </CHeaderNav>
         <CHeaderNav className="ms-3">

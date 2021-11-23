@@ -46,7 +46,7 @@ exports.update = (req, res) => {
 exports.getAll = (req, res) => {
   Intake.findAll({
     where: {
-      merchantid: req.body.merchantid,
+      merchantid: req.params.userid,
     },
   })
     .then((data) => {

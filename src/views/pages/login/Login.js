@@ -7,10 +7,12 @@ import {
   CCardBody,
   CCardFooter,
   CCardGroup,
+  CCardHeader,
   CCol,
   CContainer,
   CForm,
   CFormInput,
+  CFormSelect,
   CInputGroup,
   CInputGroupText,
   CRow,
@@ -69,6 +71,10 @@ const Login = (props) => {
                 <CCardBody>
                   <CForm noValidate validated={validated} onSubmit={handleLogin}>
                     <h1>Login</h1>
+                    <CFormSelect>
+                      <option>Merchant</option>
+                      <option>Vendor</option>
+                    </CFormSelect>
                     <p className="text-medium-emphasis">Sign In to your account</p>
                     <CInputGroup className="mb-3">
                       <CInputGroupText htmlFor="validationCustom01">

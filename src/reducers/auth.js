@@ -1,4 +1,11 @@
-import { REGISTER_SUCCESS, REGISTER_FAIL, LOGIN_SUCCESS, LOGIN_FAIL, LOGOUT } from '../actions/type'
+import {
+  REGISTER_SUCCESS,
+  REGISTER_FAIL,
+  LOGIN_SUCCESS,
+  LOGIN_FAIL,
+  LOGOUT,
+  TIMEOUT,
+} from '../actions/type'
 
 const user = JSON.parse(localStorage.getItem('user'))
 
@@ -31,6 +38,12 @@ export default function (state = initialState, action) {
         user: null,
       }
     case LOGOUT:
+      return {
+        ...state,
+        isLoggedIn: false,
+        user: null,
+      }
+    case TIMEOUT:
       return {
         ...state,
         isLoggedIn: false,

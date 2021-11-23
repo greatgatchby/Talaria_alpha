@@ -94,7 +94,7 @@ exports.authenticate = (req, res) => {
 }
 
 exports.getAll = (req, res) => {
-  Consignment.findAll()
+  Consignment.findAll({ where: { userid: req.params.userid } })
     .then((data) => {
       res.send(data)
     })

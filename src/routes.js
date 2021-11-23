@@ -13,6 +13,9 @@ const ConsignmentForm = React.lazy(() =>
   import('./views/Merchant/ConsignmentForm/consignmentForm.component'),
 )
 const SneakerSearch = React.lazy(() => import('./views/Merchant/SneakerSearch/SneakerSearch'))
+const Profile = React.lazy(() => import('./views/Merchant/Profile/Profile'))
+const Settings = React.lazy(() => import('./views/Merchant/Settings/settings'))
+const Billing = React.lazy(() => import('./views/Merchant/Billing/Billing'))
 //Template routes
 const Dashboard = React.lazy(() => import('./views/dashboard/Dashboard'))
 const Colors = React.lazy(() => import('./views/theme/colors/Colors'))
@@ -71,6 +74,7 @@ const routes = [
   { path: '/', exact: true, name: 'Home' },
   //talaria paths
   { path: '/consignments', name: 'consignments', component: Consignments },
+  { path: '/profile', name: 'profile', component: Profile },
   { path: '/transfers', name: 'transfers', component: Transfers },
   { path: '/dashboard', name: 'Dashboard', component: Dashboard },
   { path: '/payouts', name: 'Payouts', component: Payouts },
@@ -79,6 +83,8 @@ const routes = [
   { path: '/venues', name: 'Venues', component: Venues },
   { path: '/consignmentForm', name: 'ConsignmentForm', component: ConsignmentForm },
   { path: '/sneaker_search', name: 'SneakerSearch', component: SneakerSearch },
+  { path: '/settings', name: 'settings', component: Settings },
+  { path: '/billing', name: 'billing', component: Billing },
   //template paths
   { path: '/theme', name: 'Theme', component: Colors, exact: true },
   { path: '/theme/colors', name: 'Colors', component: Colors },
