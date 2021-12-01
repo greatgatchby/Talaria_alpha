@@ -54,7 +54,7 @@ const rejectConsignment = (consignmentid) => {
   })
 }
 const authenticateConsignment = (consignmentid) => {
-  return axios.put(API_URL + '/reject', {
+  return axios.put(API_URL + '/authenticate', {
     headers: { authHeader },
     body: { consignmentid: consignmentid },
   })

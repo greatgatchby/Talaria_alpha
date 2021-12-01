@@ -19,7 +19,7 @@ import {
 } from '@coreui/react'
 
 import AddVenue from './AddVenue'
-
+import getVenue from "./getVenue";
 class Venues extends Component {
   render() {
     return (
