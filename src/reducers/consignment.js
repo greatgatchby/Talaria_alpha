@@ -14,7 +14,7 @@ export default function (state = initialState, action) {
     case CREATE_CONSIGNMENT:
       return { ...state, consignments: payload }
     case GET_ALL_CONSIGNMENTS:
-      return { ...state, consignments: payload }
+      return { consignments: payload }
     case CONFIRM_CONSIGNMENT:
       return { ...state, consignments: payload }
     case AUTHENTICATE_CONSIGNMENT:

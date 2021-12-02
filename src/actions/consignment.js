@@ -15,7 +15,6 @@ export const retrieveConsignments = () => (dispatch) => {
     (response) => {
       dispatch({
         type: GET_ALL_CONSIGNMENTS,
-        payload: response.data,
       })
 
       dispatch({
