@@ -16,6 +16,7 @@ const SneakerSearch = React.lazy(() => import('./views/Merchant/SneakerSearch/Sn
 const Profile = React.lazy(() => import('./views/Merchant/Profile/Profile'))
 const Settings = React.lazy(() => import('./views/Merchant/Settings/settings'))
 const Billing = React.lazy(() => import('./views/Merchant/Billing/Billing'))
+const Connect = React.lazy(() => import('./views/Merchant/Profile/Connect'))
 //Template routes
 const Dashboard = React.lazy(() => import('./views/dashboard/Dashboard'))
 const Colors = React.lazy(() => import('./views/theme/colors/Colors'))

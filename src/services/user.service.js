@@ -9,12 +9,8 @@ const updateUser = () => {
 const findUser = () => {
   return axios.get(API_URL + user.userid, { headers: authHeader() })
 }
-const findVendors = () => {
-  return axios.put('http://localhost/vendor/' + user.userid, { headers: authHeader() })
-}
 
 export default {
   updateUser,
   findUser,
-  findVendors,
 }

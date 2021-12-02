@@ -1,4 +1,13 @@
-import {CButton, CCol, CForm, CFormInput, CFormLabel, CFormSelect, CInputGroup, CRow} from '@coreui/react'
+import {
+  CButton,
+  CCol,
+  CForm,
+  CFormInput,
+  CFormLabel,
+  CFormSelect,
+  CInputGroup,
+  CRow,
+} from '@coreui/react'
 import React from 'react'
 const getVenue = () => {
   return (

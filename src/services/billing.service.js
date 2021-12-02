@@ -1,31 +1,24 @@
 import axios from 'axios'
 import authHeader from './auth-header'
 
-const API_URL = 'http://localhost:3001/billing'
+const API_URL = 'http://localhost:3001/billing/'
+const user = JSON.parse(localStorage.getItem('user'))
 
 const createBilling = (
-  billing_type,
+  email,
+  name,
+  country_code,
+  number,
   userid,
-  iban,
-  street,
-  city,
-  country,
-  postcode,
-  sort_codee,
-  account_number,
 ) => {
   return axios
     .post(API_URL, {
       headers: { authHeader },
-      billing_type,
-      userid,
-      iban,
-      street,
-      city,
-      country,
-      postcode,
-      sort_codee,
-      account_number,
+      email,
+      name,
+      country_code,
+      number,
+      user.userid,
     })
     .then((response) => {
       console.log(response.data)
@@ -33,27 +26,19 @@ const createBilling = (
     })
 }
 
-const getBillingByid = (id) => {
-  return axios.get(API_URL + '/' + id)
+const findOneBilling = (id) => {
+  return axios.get(API_URL + id)
 }
-const getAllBilling = () => {
-  return axios.get(API_URL)
-}
-const updateBilling = () => {
-  return axios.get(API_URL)
+const updateBilling = (id) => {
+  return axios.get(API_URL + id)
 }
 const deleteBilling = (id) => {
-  return axios.delete(API_URL + '/' + id)
-}
-const deleteAllBilling = (id) => {
-  return axios.delete(API_URL)
+  return axios.delete(API_URL + id)
 }
 
 export default {
   createBilling,
-  getBillingByid,
-  getAllBilling,
+  findOneBilling,
   updateBilling,
   deleteBilling,
-  deleteAllBilling,
 }

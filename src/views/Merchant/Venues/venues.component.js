@@ -19,11 +19,12 @@ import {
 } from '@coreui/react'
 
 import AddVenue from './AddVenue'
-import getVenue from "./getVenue";
+import getVenue from './getVenue'
 class Venues extends Component {
   render() {
     return (
       <>
+        <AddVenue />
         <CCard>
           <CCardHeader>
             <h5>Search Venues:</h5>

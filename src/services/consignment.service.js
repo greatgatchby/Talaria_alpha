@@ -12,29 +12,46 @@ const getAllConsignments = () => {
 
 const createConsignment = (
   userid,
-  item_name,
-  item_size,
-  asking_price,
+  itemName,
+  itemSize,
+  askingPrice,
   policyid,
   date_consigned,
   date_sold,
   status_code,
   venue,
-  merchantid,
 ) => {
   return axios
-    .post(API_URL, {
+    .post(
+      API_URL,
+      {
+        userid,
+        itemName,
+        itemSize,
+        askingPrice,
+        policyid,
+        date_consigned,
+        date_sold,
+        status_code,
+        venue,
+        merchantid: user.id,
+      },
+      {
+        headers: authHeader(),
+      },
+    )
+    .then((response) => {
+      return response.data
+    })
+}
+
+const updateConsignment = (asking_price, policyid, venue) => {
+  return axios
+    .update(API_URL, {
       headers: authHeader(),
-      userid,
-      item_name,
-      item_size,
       asking_price,
       policyid,
-      date_consigned,
-      date_sold,
-      status_code,
       venue,
-      merchantid: user.id,
     })
     .then((response) => {
       return response.data
@@ -59,11 +76,24 @@ const authenticateConsignment = (consignmentid) => {
     body: { consignmentid: consignmentid },
   })
 }
+const deleteConsignment = (consignmentid) => {
+  return axios.delete(API_URL + '/' + consignmentid, {
+    headers: { authHeader },
+  })
+}
+const deleteAllConsignments = (consignmentid) => {
+  return axios.delete(API_URL + '/' + consignmentid, {
+    headers: { authHeader },
+  })
+}
 
 export default {
   getAllConsignments,
   createConsignment,
+  updateConsignment,
   confirmConsignment,
   rejectConsignment,
   authenticateConsignment,
+  deleteConsignment,
+  deleteAllConsignments,
 }

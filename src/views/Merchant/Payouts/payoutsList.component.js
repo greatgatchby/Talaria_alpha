@@ -9,12 +9,12 @@ import {
   CTableHeaderCell,
   CTableRow,
 } from '@coreui/react'
-import PayoutService from '../../../services/transfer.service'
+import PayoutService from '../../../services/payout.service'
 
 const PayoutsList = () => {
   const [payouts, setPayouts] = useState([])
   useEffect(() => {
-    PayoutService.getTransfers().then(
+    PayoutService.getAllPayoutsForMerchant().then(
       (response) => {
         setPayouts(response.data)
       },

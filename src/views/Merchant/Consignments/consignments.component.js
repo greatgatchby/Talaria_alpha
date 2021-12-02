@@ -41,28 +41,7 @@ const Dashboard = () => {
   return (
     <>
       <CRow>
-        <CCol md={3}>
-          <CCard>
-            <CCardHeader>Consignment Inventory Value</CCardHeader>
-            <CChartDoughnut
-              data={{
-                labels: ['Adidas', 'Nike', 'Jordan', 'NewBalance'],
-                datasets: [
-                  {
-                    backgroundColor: ['#41B883', '#E46651', '#00D8FF', '#DD1B16'],
-                    data: [400, 200, 800, 100],
-                  },
-                ],
-              }}
-            />
-            <CCardFooter>
-              <CWidgetStatsF className="mb-3" color="primary" title="Widget title" value="89.9%" />
-              <CWidgetStatsF className="mb-3" color="primary" title="Widget title" value="89.9%" />
-              <CWidgetStatsF className="mb-3" color="primary" title="Widget title" value="89.9%" />
-            </CCardFooter>
-          </CCard>
-        </CCol>
-        <CCol md={9}>
+        <CCol md={12}>
           <AddIntake />
           <CCard>
             <CCardHeader>

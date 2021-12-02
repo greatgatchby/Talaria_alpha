@@ -1,25 +1,19 @@
 import {
   CREATE_CONSIGNMENT,
-  CREATE_CONSIGNMENT_FAIL,
   GET_ALL_CONSIGNMENTS,
-  UPDATE_CONSIGNMENT_FAIL,
   CONFIRM_CONSIGNMENT,
   AUTHENTICATE_CONSIGNMENT,
   REJECT_CONSIGNMENT,
   REQUEST_FAIL,
 } from '../actions/type'
-const initialState = {}
+const initialState = []
 export default function (state = initialState, action) {
   const { type, payload } = action
 
   switch (type) {
     case CREATE_CONSIGNMENT:
       return { ...state, consignments: payload }
-    case CREATE_CONSIGNMENT_FAIL:
-      return { ...state, consignments: payload }
     case GET_ALL_CONSIGNMENTS:
-      return { ...state, consignments: payload }
-    case UPDATE_CONSIGNMENT_FAIL:
       return { ...state, consignments: payload }
     case CONFIRM_CONSIGNMENT:
       return { ...state, consignments: payload }

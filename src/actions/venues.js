@@ -1,17 +1,14 @@
 import {
   CREATE_VENUE,
-  CREATE_VENUE_FAIL,
-  REQUEST_FAIL,
   GET_ALL_VENUES,
-  GET_VENUE,
-  SET_MESSAGE,
+  GET_ONE_VENUE,
+  UPDATE_VENUE,
   DELETE_VENUE,
   DELETE_ALL_VENUES,
-  UPDATE_VENUE,
+  REQUEST_FAIL,
+  SET_MESSAGE,
 } from '/.type'
 import venueService from '../services/venue.service'
-import {response} from "express";
-//todo add one for each action (ie getOne, getAll, deleteOne, deleteAll, updateOne)
 export const retrieveVenue = (dispatch) => {
   return venueService.getAllVenues().then(
     (response) => {
@@ -59,7 +56,102 @@ export const createVenue = (name, address, type, division, postcode, merchantid)
         (error.response && error.response.data && error.response.data.message) ||
         error.message ||
         error.toString()
-      dispatch({ type: CREATE_VENUE_FAIL })
+      dispatch({ type: REQUEST_FAIL })
+      dispatch({ type: SET_MESSAGE, payload: message })
+      return Promise.reject()
+    },
+  )
+}
+export const findOneVenue = (id) => (dispatch) => {
+  return venueService.findOneVenue(id).then(
+    (response) => {
+      dispatch({
+        type: GET_ONE_VENUE,
+      })
+      dispatch({
+        type: SET_MESSAGE,
+        payload: response.data.message,
+      })
+      return Promise.resolve()
+    },
+    (error) => {
+      const message =
+        (error.response && error.response.data && error.response.data.message) ||
+        error.message ||
+        error.toString()
+      dispatch({ type: REQUEST_FAIL })
+      dispatch({ type: SET_MESSAGE, payload: message })
+      return Promise.reject()
+    },
+  )
+}
+export const updateVenue =
+  (venueid, venueName, address, postcode, country, city, division) => (dispatch) => {
+    return venueService
+      .updateVenue(venueid, venueName, address, postcode, country, city, division)
+      .then(
+        (response) => {
+          dispatch({
+            type: UPDATE_VENUE,
+          })
+          dispatch({
+            type: SET_MESSAGE,
+            payload: response.data.message,
+          })
+          return Promise.resolve()
+        },
+        (error) => {
+          const message =
+            (error.response && error.response.data && error.response.data.message) ||
+            error.message ||
+            error.toString()
+          dispatch({ type: REQUEST_FAIL })
+          dispatch({ type: SET_MESSAGE, payload: message })
+          return Promise.reject()
+        },
+      )
+  }
+export const deleteVenue = (id) => (dispatch) => {
+  return venueService.createVenue(id).then(
+    (response) => {
+      dispatch({
+        type: DELETE_VENUE,
+      })
+      dispatch({
+        type: SET_MESSAGE,
+        payload: response.data.message,
+      })
+      return Promise.resolve()
+    },
+    (error) => {
+      const message =
+        (error.response && error.response.data && error.response.data.message) ||
+        error.message ||
+        error.toString()
+      dispatch({ type: REQUEST_FAIL })
+      dispatch({ type: SET_MESSAGE, payload: message })
+      return Promise.reject()
+    },
+  )
+}
+export const deleteAllVenues = (id) => (dispatch) => {
+  return venueService.deleteAllVenues(id).then(
+    (response) => {
+      dispatch({
+        type: DELETE_ALL_VENUES,
+      })
+      dispatch({
+        type: SET_MESSAGE,
+        payload: response.data.message,
+      })
+      return Promise.resolve()
+    },
+    (error) => {
+      const message =
+        (error.response && error.response.data && error.response.data.message) ||
+        error.message ||
+        error.toString()
+      dispatch({ type: REQUEST_FAIL })
       dispatch({ type: SET_MESSAGE, payload: message })
       return Promise.reject()
     },

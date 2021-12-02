@@ -14,7 +14,7 @@ import {
   CRow,
 } from '@coreui/react'
 //change for each page/view
-import { createVenue } from '../../../actions/venue'
+import venueService from '../../../services/venue.service'
 import { useDispatch } from 'react-redux'
 
 const AddVenue = () => {
@@ -48,8 +48,12 @@ const AddVenue = () => {
   const handleSubmit = (e) => {
     e.preventDefault()
     dispatch(
-      createVenue(venueName, venueType, venueAddress, venuePostcode, venueDivision, merchantid),
-    ).then(console.log('submitted'))
+      venueService.createVenue(venueName, venueAddress, venueType, venueDivision, venuePostcode),
+    )
+      .then(console.log('submitted'))
+      .catch((err) => {
+        console.log(err)
+      })
   }
   return (
     <>

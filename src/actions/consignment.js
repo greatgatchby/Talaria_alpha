@@ -1,8 +1,8 @@
 import {
   CREATE_CONSIGNMENT,
-  CREATE_CONSIGNMENT_FAIL,
   GET_ALL_CONSIGNMENTS,
-  UPDATE_CONSIGNMENT_FAIL,
+  UPDATE_CONSIGNMENT,
+  DELETE_CONSIGNMENT,
   CONFIRM_CONSIGNMENT,
   AUTHENTICATE_CONSIGNMENT,
   REJECT_CONSIGNMENT,
@@ -10,11 +10,12 @@ import {
   SET_MESSAGE,
 } from './type'
 import consignmentService from '../services/consignment.service'
-export const retrieveConsignments = (dispatch) => {
+export const retrieveConsignments = () => (dispatch) => {
   return consignmentService.getAllConsignments().then(
     (response) => {
       dispatch({
         type: GET_ALL_CONSIGNMENTS,
+        payload: response.data,
       })
 
       dispatch({
@@ -44,41 +45,29 @@ export const retrieveConsignments = (dispatch) => {
 }
 export const createConsignment =
   (
-    email,
-    item_name,
-    item_size,
-    asking_price,
+    userid,
+    itemName,
+    itemSize,
+    askingPrice,
     policyid,
     date_consigned,
     date_sold,
     status_code,
     venue,
-    merchantid,
   ) =>
   (dispatch) => {
     return consignmentService
-      .createConsignment(
-        email,
-        item_name,
-        item_size,
-        asking_price,
-        policyid,
-        date_consigned,
-        date_sold,
-        status_code,
-        venue,
-        merchantid,
-      )
+      .createConsignment(userid, itemName, itemSize, askingPrice, policyid, status_code, venue)
       .then(
         (response) => {
           dispatch({
             type: CREATE_CONSIGNMENT,
           })
+
           dispatch({
             type: SET_MESSAGE,
-            payload: response.data.message,
+            payload: response.data,
           })
-
           return Promise.resolve()
         },
         (error) => {
@@ -86,9 +75,94 @@ export const createConsignment =
             (error.response && error.response.data && error.response.data.message) ||
             error.message ||
             error.toString()
-          dispatch({ type: CREATE_CONSIGNMENT_FAIL })
+          dispatch({ type: REQUEST_FAIL })
           dispatch({ type: SET_MESSAGE, payload: message })
           return Promise.reject()
         },
       )
   }
+export const updateConsignment = (asking_price, policyid, venue) => (dispatch) => {
+  return consignmentService.updateConsignment(asking_price, policyid, venue).then(
+    (response) => {
+      dispatch({
+        type: UPDATE_CONSIGNMENT,
+      })
+      dispatch({
+        type: SET_MESSAGE,
+        payload: response.data.message,
+      })
+
+      return Promise.resolve()
+    },
+    (error) => {
+      const message =
+        (error.response && error.response.data && error.response.data.message) ||
+        error.message ||
+        error.toString()
+      dispatch({
+        type: REQUEST_FAIL,
+      })
+      dispatch({ type: SET_MESSAGE, payload: message })
+      return Promise.reject()
+    },
+  )
+}
+export const confirmConsignment = (id) => (dispatch) => {
+  return consignmentService.confirmConsignment(id).then((response) => {
+    dispatch({
+      type: CONFIRM_CONSIGNMENT,
+    })
+    dispatch({
+      type: SET_MESSAGE,
+      payload: response.data.message,
+    })
+  })
+}
+export const rejectConsignment = (id) => (dispatch) => {
+  return consignmentService.rejectConsignment(id).then((response) => {
+    dispatch({
+      type: REJECT_CONSIGNMENT,
+    })
+    dispatch({
+      type: SET_MESSAGE,
+      payload: response.data.message,
+    })
+  })
+}
+export const authenticateConsignment = (id) => (dispatch) => {
+  return consignmentService.authenticateConsignment(id).then((response) => {
+    dispatch({
+      type: AUTHENTICATE_CONSIGNMENT,
+    })
+    dispatch({
+      type: SET_MESSAGE,
+      payload: response.data.message,
+    })
+  })
+}
+export const deleteConsignment = (id) => (dispatch) => {
+  return consignmentService.deleteConsignment(id).then(
+    (response) => {
+      dispatch({
+        type: DELETE_CONSIGNMENT,
+      })
+      dispatch({
+        type: SET_MESSAGE,
+        payload: response.data.message,
+      })
+
+      return Promise.resolve()
+    },
+    (error) => {
+      const message =
+        (error.response && error.response.data && error.response.data.message) ||
+        error.message ||
+        error.toString()
+      dispatch({
+        type: REQUEST_FAIL,
+      })
+      dispatch({ type: SET_MESSAGE, payload: message })
+      return Promise.reject()
+    },
+  )
+}

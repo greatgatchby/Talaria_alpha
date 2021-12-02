@@ -130,10 +130,10 @@ const IntakesTable = () => {
             {/* eslint-disable-next-line prettier/prettier */}
             {intakes.map(intake => (
               <CTableRow key={intake.id}>
-                <CTableDataCell>{intake.id}</CTableDataCell>
+                <CTableDataCell>{intake.intakeid}</CTableDataCell>
                 <CTableDataCell>{intake.consignmentid}</CTableDataCell>
                 <CTableDataCell>some text</CTableDataCell>
-                <CTableDataCell>{intake.intake_type}</CTableDataCell>
+                <CTableDataCell>{intake.intakeType}</CTableDataCell>
                 <CTableDataCell>Some text</CTableDataCell>
                 <CTableDataCell>{intake.status}</CTableDataCell>
               </CTableRow>
