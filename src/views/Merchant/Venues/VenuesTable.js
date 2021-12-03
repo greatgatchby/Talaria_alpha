@@ -20,15 +20,19 @@ import {
   CTableHeaderCell,
   CTableRow,
 } from '@coreui/react'
-import venueService from '../../../services/venues.service'
-import ConsignmentService from '../../../services/consignment.service'
+import venueService from '../../../services/venue.service'
 
 const VenuesTable = () => {
   const [visible, setVisible] = useState(false)
   const [venues, setVenues] = useState([])
+  const [venueId, setVenueId] = useState([])
+  const [venueName, setVenueName] = useState([])
+  const [venueAddress, setVenueAddress] = useState([])
+  const [venuePostcode, setVenuePostcode] = useState([])
   useEffect(() => {
-    VenueService.getAllVenues().then(
+    venueService.getAllVenues().then(
       (response) => {
+        console.log(response.data)
         setVenues(response.data)
       },
       (error) => {
@@ -41,7 +45,19 @@ const VenuesTable = () => {
       },
     )
   }, [])
-  console.log(venues)
+  const onChangeVenueid = (id) => {
+    const venueId = id
+    setVenueId(venueId)
+    findOne(id)
+    setVisible(!visible)
+  }
+  const findOne = (id) => {
+    venueService.findOneVenue(id).then((data) => {
+      console.log(data)
+      setVenueAddress(data.venueAddress)
+      setVenuePostcode()
+    })
+  }
   return (
     <>
       <CModal visible={visible} onDismiss={() => setVisible(false)}>
@@ -52,20 +68,20 @@ const VenuesTable = () => {
           <CRow>
             <CCol md={6} className={'p-3'}>
               <ul>
-                <li>Name</li>
-                <li>Address</li>
-                <li>Type</li>
-                <li>Postcode</li>
-                <li>Division</li>
-                <li>Merchant ID</li>
+                <p>
+                  <h4>#id:</h4> {venueId}
+                </p>
+                <p>
+                  <h4>Name:</h4> {venueName}
+                </p>
+                <p>
+                  <h4>Address:</h4> {venueAddress}
+                </p>
+                <p>
+                  <h4>Postcode:</h4> {venuePostcode}
+                </p>
               </ul>
             </CCol>
-            {/*<CCol md={6} className={'d-flex align-items-center justify-content-center'}>*/}
-            {/*  <div className={'d-block'}>*/}
-            {/*    <CButton className={'btn-danger mx-2'}>Reject</CButton>*/}
-            {/*    <CButton className={'btn-primary'}>Accept</CButton>*/}
-            {/*  </div>*/}
-            {/*</CCol>*/}
           </CRow>
         </CModalBody>
         <CModalFooter>
@@ -82,26 +98,30 @@ const VenuesTable = () => {
               <CFormCheck />
             </CTableHeaderCell>
             <CTableHeaderCell scope="col">#</CTableHeaderCell>
-            <CTableHeaderCell scope="col">Venue Name</CTableHeaderCell>
-            <CTableHeaderCell scope="col">Venue Address</CTableHeaderCell>
-            <CTableHeaderCell scope="col">Venue Postcode</CTableHeaderCell>
-            <CTableHeaderCell scope="col">Venue Type</CTableHeaderCell>
-            <CTableHeaderCell scope="col">Venue Division</CTableHeaderCell>
+            <CTableHeaderCell scope="col">Name</CTableHeaderCell>
+            <CTableHeaderCell scope="col">Address</CTableHeaderCell>
+            <CTableHeaderCell scope="col">City</CTableHeaderCell>
+            <CTableHeaderCell scope="col">Division</CTableHeaderCell>
+            <CTableHeaderCell scope="col">Country</CTableHeaderCell>
+            <CTableHeaderCell scope="col">Postcode</CTableHeaderCell>
+            <CTableHeaderCell scope="col">Type</CTableHeaderCell>
           </CTableRow>
         </CTableHead>
         <CTableBody>
           {/* eslint-disable-next-line */}
           {venues.map(venue => (
-            <CTableRow onClick={() => setVisible(!visible)} key={venue.venueid}>
+            <CTableRow onClick={() => onChangeVenueid(venue.venueid)} key={venue.venueid}>
               <CTableDataCell scope="row">
                 <CFormCheck />
               </CTableDataCell>
               <CTableDataCell>{venue.venueid}</CTableDataCell>
               <CTableDataCell>{venue.venueName}</CTableDataCell>
-              <CTableDataCell>{venue.venueAddress}</CTableDataCell>
+              <CTableDataCell>{venue.address}</CTableDataCell>
+              <CTableDataCell>{venue.city}</CTableDataCell>
+              <CTableDataCell>{venue.division}</CTableDataCell>
+              <CTableDataCell>{venue.country}</CTableDataCell>
+              <CTableDataCell>{venue.postcode}</CTableDataCell>
               <CTableDataCell>{venue.venueType}</CTableDataCell>
-              <CTableDataCell>{venue.venuePostcode}</CTableDataCell>
-              <CTableDataCell>{venue.venueDivision}</CTableDataCell>
               <CTableDataCell className={'text-info'}>{venue.status_code}</CTableDataCell>
             </CTableRow>
           ))}
@@ -110,3 +130,4 @@ const VenuesTable = () => {
     </>
   )
 }
+export default VenuesTable

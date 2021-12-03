@@ -2,7 +2,7 @@ import axios from 'axios'
 import authHeader from './auth-header'
 
 const API_URL = 'http://localhost:3001/venue/'
-const userId = JSON.parse(localStorage.getItem('user')).userid
+const user = JSON.parse(localStorage.getItem('user'))
 
 const createVenue = (
   venueName,
@@ -24,14 +24,14 @@ const createVenue = (
       country,
       city,
       division,
-      userId,
+      merchantid: user.id,
     })
     .then((response) => {
       return response.data
     })
 }
-const getAllVenues = (merchantid) => {
-  return axios.get(API_URL + merchantid, {
+const getAllVenues = () => {
+  return axios.get(API_URL + user.id, {
     headers: authHeader(),
   })
 }

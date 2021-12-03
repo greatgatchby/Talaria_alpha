@@ -22,6 +22,8 @@ const AddVenue = () => {
   const [venueAddress, setVenueAddress] = useState('')
   const [venueType, setVenueType] = useState('')
   const [venuePostcode, setVenuePostcode] = useState('')
+  const [venueCountry, setVenueCountry] = useState('')
+  const [venueCity, setVenueCity] = useState('')
   const [venueDivision, setVenueDivision] = useState('')
 
   const onAddVenueName = (e) => {
@@ -31,6 +33,14 @@ const AddVenue = () => {
   const onAddVenueAddress = (e) => {
     const venueAddress = e.target.value
     setVenueAddress(venueAddress)
+  }
+  const onAddVenueCity = (e) => {
+    const VenueCity = e.target.value
+    setVenueCity(VenueCity)
+  }
+  const onAddVenueCountry = (e) => {
+    const venueCountry = e.target.value
+    setVenueCountry(venueCountry)
   }
   const onAddVenueType = (e) => {
     const venueType = e.target.value
@@ -47,10 +57,17 @@ const AddVenue = () => {
   const dispatch = useDispatch()
   const handleSubmit = (e) => {
     e.preventDefault()
-    dispatch(
-      venueService.createVenue(venueName, venueAddress, venueType, venueDivision, venuePostcode),
-    )
-      .then(console.log('submitted'))
+    venueService
+      .createVenue(
+        venueName,
+        venueType,
+        venueAddress,
+        venuePostcode,
+        venueCountry,
+        venueCity,
+        venueDivision,
+      )
+      .then((response) => console.log(response))
       .catch((err) => {
         console.log(err)
       })
@@ -85,6 +102,32 @@ const AddVenue = () => {
                       name={'venueAddress'}
                       value={venueAddress}
                       onChange={onAddVenueAddress}
+                      required
+                    />
+                  </CFormLabel>
+                </CInputGroup>
+              </CCol>
+              <CCol>
+                <CInputGroup>
+                  <CFormLabel>
+                    City:
+                    <CFormInput
+                      name={'venueCity'}
+                      value={venueCity}
+                      onChange={onAddVenueCity}
+                      required
+                    />
+                  </CFormLabel>
+                </CInputGroup>
+              </CCol>
+              <CCol>
+                <CInputGroup>
+                  <CFormLabel>
+                    Country:
+                    <CFormInput
+                      name={'venueCountry'}
+                      value={venueCountry}
+                      onChange={onAddVenueCountry}
                       required
                     />
                   </CFormLabel>

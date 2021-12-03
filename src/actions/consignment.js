@@ -48,6 +48,7 @@ export const createConsignment =
     itemName,
     itemSize,
     askingPrice,
+    intakeType,
     policyid,
     date_consigned,
     date_sold,
@@ -56,7 +57,16 @@ export const createConsignment =
   ) =>
   (dispatch) => {
     return consignmentService
-      .createConsignment(userid, itemName, itemSize, askingPrice, policyid, status_code, venue)
+      .createConsignment(
+        userid,
+        itemName,
+        itemSize,
+        askingPrice,
+        intakeType,
+        policyid,
+        status_code,
+        venue,
+      )
       .then(
         (response) => {
           dispatch({

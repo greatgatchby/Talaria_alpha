@@ -15,6 +15,7 @@ import {
 
 import { createConsignment } from '../../../actions/consignment'
 import { useDispatch } from 'react-redux'
+const user = JSON.parse(localStorage.getItem('user'))
 
 const AddIntake = () => {
   const [itemName, setItemName] = useState('')
@@ -58,18 +59,22 @@ const AddIntake = () => {
     e.preventDefault()
     dispatch(
       createConsignment(
+        user.id,
         vendor,
         itemName,
         itemSize,
         askingPrice,
+        intakeType,
         policyId,
-        null,
-        null,
-        'requested',
-        1,
         1,
       ),
     ).then(console.log('submitted'))
+  }
+  const setShippingTrue = () => {
+    setIntakeType('shipped')
+  }
+  const setShippingFalse = () => {
+    setIntakeType('dropped')
   }
   return (
     <>
@@ -114,18 +119,24 @@ const AddIntake = () => {
                 <CInputGroup>
                   <CFormLabel>
                     Item Size:
-                    <CFormSelect
-                      name={'itemSize'}
-                      value={itemSize}
-                      onChange={onChangeItemSize}
-                      required
-                    >
-                      <option>3</option>
-                      <option>4</option>
-                      <option>4.5</option>
-                      <option>5</option>
-                      <option>5.5</option>
-                      <option>6</option>
+                    <CFormSelect value={itemSize} onChange={onChangeItemSize} required>
+                      <option onClick={() => setItemSize(5.5)}>5.5</option>
+                      <option onClick={() => setItemSize(6)}>6</option>
+                      <option onClick={() => setItemSize(6.5)}>6.5</option>
+                      <option onClick={() => setItemSize(7)}>7</option>
+                      <option onClick={() => setItemSize(7.5)}>7.5</option>
+                      <option onClick={() => setItemSize(8)}>8</option>
+                      <option onClick={() => setItemSize(8.5)}>8.5</option>
+                      <option onClick={() => setItemSize(9)}>9</option>
+                      <option onClick={() => setItemSize(9.5)}>9.5</option>
+                      <option onClick={() => setItemSize(10)}>10</option>
+                      <option onClick={() => setItemSize(10.5)}>10.5</option>
+                      <option onClick={() => setItemSize(11)}>11</option>
+                      <option onClick={() => setItemSize(11.5)}>11.5</option>
+                      <option onClick={() => setItemSize(12)}>12</option>
+                      <option onClick={() => setItemSize(13)}>13</option>
+                      <option onClick={() => setItemSize(14)}>14</option>
+                      <option onClick={() => setItemSize(15)}>15</option>
                     </CFormSelect>
                   </CFormLabel>
                 </CInputGroup>
@@ -178,8 +189,8 @@ const AddIntake = () => {
                       onChange={onChangeIntakeType}
                       required
                     >
-                      <option>Dropped</option>
-                      <option>Shipped</option>
+                      <option onClick={() => setShippingFalse()}>Dropped</option>
+                      <option onClick={() => setShippingTrue()}>Shipped</option>
                     </CFormSelect>
                   </CFormLabel>
                 </CInputGroup>

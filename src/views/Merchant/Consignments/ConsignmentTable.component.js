@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import {
   CButton,
-  CCard,
   CCarousel,
   CCarouselItem,
   CCol,
@@ -28,9 +28,11 @@ import ConsignmentService from '../../../services/consignment.service'
 const ConsignmentTable = () => {
   const [visible, setVisible] = useState(false)
   const [consignments, setConsignments] = useState([])
+  const [currentConsignment, setCurrentConsignment] = useState(null)
   useEffect(() => {
     ConsignmentService.getAllConsignments().then(
       (response) => {
+        console.log(response.data)
         setConsignments(response.data)
       },
       (error) => {
@@ -43,7 +45,6 @@ const ConsignmentTable = () => {
       },
     )
   }, [])
-  console.log(consignments)
   return (
     <>
       <CModal visible={visible} onDismiss={() => setVisible(false)}>
@@ -111,14 +112,15 @@ const ConsignmentTable = () => {
                 <CFormCheck />
               </CTableDataCell>
               <CTableDataCell>{consignment.consignmentid}</CTableDataCell>
-              <CTableDataCell>{consignment.item_name}</CTableDataCell>
-              <CTableDataCell>{consignment.item_size}</CTableDataCell>
+              <CTableDataCell>{consignment.itemName}</CTableDataCell>
+              <CTableDataCell>{consignment.itemSize}</CTableDataCell>
               <CTableDataCell>{consignment.userid}</CTableDataCell>
-              <CTableDataCell>{consignment.asking_price}</CTableDataCell>
+              <CTableDataCell>{consignment.askingPrice}</CTableDataCell>
               <CTableDataCell>
-                {Math.round(consignment.asking_price * 0.2).toFixed(2)}
+                {Math.round(consignment.askingPrice * 0.92).toFixed(2)}
               </CTableDataCell>
-              <CTableDataCell className={'text-info'}>{consignment.status_code}</CTableDataCell>
+              <CTableDataCell>{consignment.intakeType}</CTableDataCell>
+              <CTableDataCell className={'text-info'}>{consignment.status}</CTableDataCell>
             </CTableRow>
           ))}
         </CTableBody>

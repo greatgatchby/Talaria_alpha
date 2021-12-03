@@ -5,7 +5,7 @@ const API_URL = 'http://localhost:3001/payout/'
 const user = JSON.parse(localStorage.getItem('user'))
 
 const getAllPayoutsForMerchant = () => {
-  return axios.get('http://localhost:3001/payoutsForMerchant/' + user.userid, {
+  return axios.get('http://localhost:3001/payoutsForMerchant/' + user.id, {
     headers: authHeader(),
   })
 }

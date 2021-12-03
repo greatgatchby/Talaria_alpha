@@ -19,15 +19,26 @@ import sneakerService from '../../../services/sneakerSearch.service'
 
 const SneakerSearch = () => {
   const [results, setResults] = useState([])
-  sneakerService.searchSneakers('red').then((response) => setResults(response.data),       (error) => {
-    const _results =
-      (error.response && error.response.data && error.response.data.message) ||
-      error.message ||
-      error.parse()
+  const [searchItem, setSearchItem] = useState('')
+  const onSearchChange = (e) => {
+  const searchItem = e.target.value
+    if (searchItem !== ''){
+      sneakerService.searchSneakers(searchItem).then((response) => {
+        setResults(response.data.results)
+        console.log(response.data.results)
+      },       (error) => {
+        const _results =
+          (error.response && error.response.data && error.response.data.message) ||
+          error.message ||
+          error.parse()
 
-    setResults(_results)
-  },)
-  console.log(results)
+        setResults(_results)
+      },)
+      setSearchItem(searchItem)
+    }
+    }
+
+
   return (
     <>
       <CRow>
@@ -37,7 +48,7 @@ const SneakerSearch = () => {
             <CRow p-2>
               <small>Enter item name or stylecode.</small>
             </CRow>
-            <CFormInput />
+            <CFormInput value={searchItem} onChange={onSearchChange} />
           </CFormLabel>
         </CInputGroup>
       </CRow>
@@ -68,9 +79,8 @@ const SneakerSearch = () => {
                 <CTableDataCell>Jordan Brand</CTableDataCell>
                 <CTableDataCell>£170</CTableDataCell>
               </CTableBody>
-              <CTableFoot></CTableFoot>
             </CTable>
-            {results}
+            {results.map(result => (<li key={result.id}>{result}</li> ))}
           </CCard>
         </CContainer>
       </CRow>

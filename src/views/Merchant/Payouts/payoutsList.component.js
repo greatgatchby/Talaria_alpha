@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react'
 import {
   CButton,
   CCardBody,
+  CForm,
+  CFormInput,
   CTable,
   CTableBody,
   CTableDataCell,
@@ -13,10 +15,12 @@ import PayoutService from '../../../services/payout.service'
 
 const PayoutsList = () => {
   const [payouts, setPayouts] = useState([])
+  const [payoutSelected, setpayoutSelected] = useState([])
   useEffect(() => {
     PayoutService.getAllPayoutsForMerchant().then(
       (response) => {
         setPayouts(response.data)
+        console.log(response.data)
       },
       (error) => {
         const _payouts =
@@ -28,6 +32,12 @@ const PayoutsList = () => {
       },
     )
   }, [])
+  const handlePayout = (e) => {
+    e.preventDefault()
+    PayoutService.sendPayout(payoutSelected).then((response) => {
+      console.log(response)
+    })
+  }
   return (
     <>
       <CTable>
@@ -42,17 +52,28 @@ const PayoutsList = () => {
           </CTableRow>
         </CTableHead>
         <CTableBody>
-          <CTableRow>
-            <CTableDataCell>123</CTableDataCell>
-            <CTableDataCell>Jordan 1 chicago</CTableDataCell>
-            <CTableDataCell>UK 9</CTableDataCell>
-            <CTableDataCell>£123</CTableDataCell>
-            <CTableDataCell>Jor-Nik-Chi-202</CTableDataCell>
-            <CTableDataCell>£{123 / 0.92}</CTableDataCell>
-            <CTableDataCell className={'d-flex justify-content-end'}>
-              <CButton>Pay Now</CButton>
-            </CTableDataCell>
-          </CTableRow>
+          {payouts.map((payout) => (
+            <>
+              <CTableRow
+                onClick={() => {
+                  setpayoutSelected(payout.id)
+                }}
+              >
+                <CTableDataCell>{payout.id}</CTableDataCell>
+                <CTableDataCell>{payout.itemName}</CTableDataCell>
+                <CTableDataCell>{payout.itemSize}</CTableDataCell>
+                <CTableDataCell>{payout.askingPrice}</CTableDataCell>
+                <CTableDataCell>Jor-Nik-Chi-202</CTableDataCell>
+                <CTableDataCell>{payout.amount}</CTableDataCell>
+                <CTableDataCell className={'d-flex justify-content-end'} key={payout.id}>
+                  <CForm onSubmit={handlePayout}>
+                    <CFormInput type={'hidden'} value={payout.id} />
+                    <CButton type={'submit'}>Pay Now</CButton>
+                  </CForm>
+                </CTableDataCell>
+              </CTableRow>
+            </>
+          ))}
         </CTableBody>
       </CTable>
     </>

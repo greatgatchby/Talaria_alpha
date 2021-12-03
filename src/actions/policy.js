@@ -105,8 +105,8 @@ export const findPolicy = (id) => (dispatch) => {
     },
   )
 }
-export const updatePolicy = (id) => (dispatch) => {
-  return policyService.updatePolicy(id).then(
+export const updatePolicy = (id, policyTerms, policyRate, policyName) => (dispatch) => {
+  return policyService.updatePolicy(id, policyTerms, policyRate, policyName).then(
     (response) => {
       dispatch({
         type: UPDATE_POLICY,

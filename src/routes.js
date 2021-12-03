@@ -16,7 +16,8 @@ const SneakerSearch = React.lazy(() => import('./views/Merchant/SneakerSearch/Sn
 const Profile = React.lazy(() => import('./views/Merchant/Profile/Profile'))
 const Settings = React.lazy(() => import('./views/Merchant/Settings/settings'))
 const Billing = React.lazy(() => import('./views/Merchant/Billing/Billing'))
-const Connect = React.lazy(() => import('./views/Merchant/Profile/Connect'))
+//const Connect = React.lazy(() => import('./views/Merchant/Profile/Connect'))
+const Policy = React.lazy(() => import('./views/Merchant/Policy/policy.component'))
 //Template routes
 const Dashboard = React.lazy(() => import('./views/dashboard/Dashboard'))
 const Colors = React.lazy(() => import('./views/theme/colors/Colors'))
@@ -86,6 +87,7 @@ const routes = [
   { path: '/sneaker_search', name: 'SneakerSearch', component: SneakerSearch },
   { path: '/settings', name: 'settings', component: Settings },
   { path: '/billing', name: 'billing', component: Billing },
+  { path: '/policy', name: 'policy', component: Policy },
   //template paths
   { path: '/theme', name: 'Theme', component: Colors, exact: true },
   { path: '/theme/colors', name: 'Colors', component: Colors },

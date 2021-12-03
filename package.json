@@ -45,6 +45,7 @@
     "express": "^4.17.1",
     "express-session": "^1.17.2",
     "firebase": "^9.0.2",
+    "json-bigint": "^1.0.0",
     "mysql": "^2.18.1",
     "mysql2": "^2.3.0",
     "node-code-generator": "^1.0.3",

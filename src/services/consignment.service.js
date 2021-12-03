@@ -15,11 +15,10 @@ const createConsignment = (
   itemName,
   itemSize,
   askingPrice,
+  intakeType,
   policyid,
-  date_consigned,
-  date_sold,
-  status_code,
   venue,
+  merchantid,
 ) => {
   return axios
     .post(
@@ -30,11 +29,8 @@ const createConsignment = (
         itemSize,
         askingPrice,
         policyid,
-        date_consigned,
-        date_sold,
-        status_code,
         venue,
-        merchantid: user.id,
+        merchantid,
       },
       {
         headers: authHeader(),

@@ -20,6 +20,7 @@ import {
 
 import AddVenue from './AddVenue'
 import getVenue from './getVenue'
+import VenuesTable from './VenuesTable'
 class Venues extends Component {
   render() {
     return (
@@ -60,24 +61,7 @@ class Venues extends Component {
               </CRow>
             </CForm>
           </CCardHeader>
-          <CTable>
-            <CTableHead color={'light'}>
-              <CTableRow>
-                <CTableHeaderCell>#</CTableHeaderCell>
-                <CTableHeaderCell>venue name</CTableHeaderCell>
-                <CTableHeaderCell>venue type</CTableHeaderCell>
-                <CTableHeaderCell>info</CTableHeaderCell>
-              </CTableRow>
-            </CTableHead>
-            <CTableBody>
-              <CTableRow>
-                <CTableDataCell>1</CTableDataCell>
-                <CTableDataCell>Manchester Store</CTableDataCell>
-                <CTableDataCell>Physical</CTableDataCell>
-                <CTableDataCell>52 colemore row, b1 1ld</CTableDataCell>
-              </CTableRow>
-            </CTableBody>
-          </CTable>
+          <VenuesTable />
         </CCard>
       </>
     )
