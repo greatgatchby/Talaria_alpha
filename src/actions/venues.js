@@ -227,3 +227,4 @@ export const deleteAllVenues = (id) => (dispatch) => {
     },
   )
 }
+export default getVenue
