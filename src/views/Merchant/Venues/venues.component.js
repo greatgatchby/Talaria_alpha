@@ -23,4 +23,4 @@ import UpdateVenue from './UpdateVenue'
 
 import VenuesTable from './VenuesTable'
 
-
+export default Venues
