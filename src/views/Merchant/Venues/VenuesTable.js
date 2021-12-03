@@ -29,6 +29,10 @@ const VenuesTable = () => {
   const [venueName, setVenueName] = useState([])
   const [venueAddress, setVenueAddress] = useState([])
   const [venuePostcode, setVenuePostcode] = useState([])
+  const [venueCity, setVenueCity] = useState([])
+  const [venueCountry, setVenueCountry] = useState([])
+  const [venueDivision, setVenueDivision] = useState([])
+  const [venueType, setVenueType] = useState([])
   useEffect(() => {
     venueService.getAllVenues().then(
       (response) => {
@@ -45,19 +49,19 @@ const VenuesTable = () => {
       },
     )
   }, [])
-  const onChangeVenueid = (id) => {
-    const venueId = id
-    setVenueId(venueId)
-    findOne(id)
-    setVisible(!visible)
-  }
-  const findOne = (id) => {
-    venueService.findOneVenue(id).then((data) => {
-      console.log(data)
-      setVenueAddress(data.venueAddress)
-      setVenuePostcode()
-    })
-  }
+  // const onChangeVenueid = (id) => {
+  //   const venueId = id
+  //   setVenueId(venueId)
+  //   findOne(id)
+  //   setVisible(!visible)
+  // }
+  // const findOne = (id) => {
+  //   venueService.findOneVenue(id).then((data) => {
+  //     console.log(data)
+  //     setVenueAddress(data.venueAddress)
+  //     setVenuePostcode()
+  //   })
+  // }
   return (
     <>
       <CModal visible={visible} onDismiss={() => setVisible(false)}>
@@ -79,6 +83,18 @@ const VenuesTable = () => {
                 </p>
                 <p>
                   <h4>Postcode:</h4> {venuePostcode}
+                </p>
+                <p>
+                  <h4>City:</h4> {venueCity}
+                </p>
+                <p>
+                  <h4>Country:</h4> {venueCountry}
+                </p>
+                <p>
+                  <h4>Division:</h4> {venueDivision}
+                </p>
+                <p>
+                  <h4>Type:</h4> {venueType}
                 </p>
               </ul>
             </CCol>
@@ -110,7 +126,7 @@ const VenuesTable = () => {
         <CTableBody>
           {/* eslint-disable-next-line */}
           {venues.map(venue => (
-            <CTableRow onClick={() => onChangeVenueid(venue.venueid)} key={venue.venueid}>
+            <CTableRow onClick={() => setVisible(!visible)} key={venue.venueid}>
               <CTableDataCell scope="row">
                 <CFormCheck />
               </CTableDataCell>

@@ -22,5 +22,24 @@ import AddVenue from './AddVenue'
 import UpdateVenue from './UpdateVenue'
 
 import VenuesTable from './VenuesTable'
+const Venues = () => {
+  return (
+    <>
+      <CRow>
+        <CCol md={12}>
+          <AddVenue />
+          <CCard>
+            <CCardHeader>
+              <UpdateVenue />
+            </CCardHeader>
+            <CCardBody className={'overflow-auto'}>
+              <VenuesTable />
+            </CCardBody>
+          </CCard>
+        </CCol>
+      </CRow>
+    </>
+  )
+}
 
 export default Venues

@@ -159,7 +159,6 @@ const UpdateVenue = () => {
           </CForm>
         </CModalBody>
       </CModal>
-      //end of update form
       <CRow>
         <CCol md={5}>
           <CCard>
