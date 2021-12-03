@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import {
   CAvatar,
   CButton,
@@ -7,11 +7,6 @@ import {
   CCardFooter,
   CCardHeader,
   CCol,
-  CContainer,
-  CForm,
-  CFormInput,
-  CFormLabel,
-  CInputGroup,
   CModal,
   CModalBody,
   CModalFooter,
@@ -20,9 +15,18 @@ import {
   CRow,
 } from '@coreui/react'
 import avatar8 from '../../../assets/images/avatars/8.jpg'
-
+import BillingService from '../../../services/billing.service'
 const Billing = () => {
   const [visible, setVisible] = useState(false)
+  useEffect(() => {
+    BillingService.findOneBilling().then(
+      //TODO add request to fetch all billing items for the user
+      console.log('request sent'),
+    )
+  }, [])
+  const handleCreateCard = () => {}
+  const handleLinkPaypal = () => {}
+  const handleAddBankAccount = () => {}
   return (
     <>
       <CModal visible={visible}>
@@ -32,19 +36,19 @@ const Billing = () => {
         <CModalBody>
           <CRow className={'mb-2'}>
             <CCol sm={3}>
-              <CButton>Card</CButton>
+              <CButton onClick={handleCreateCard}>Card</CButton>
             </CCol>
             <CCol>Add your debit or credit card details</CCol>
           </CRow>
           <CRow className={'mb-2'}>
             <CCol sm={3}>
-              <CButton>Bank</CButton>
+              <CButton onClick={handleLinkPaypal}>Bank</CButton>
             </CCol>
             <CCol>Connect your bank account</CCol>
           </CRow>
           <CRow className={'mb-2'}>
             <CCol sm={3}>
-              <CButton>Paypal</CButton>
+              <CButton onClick={handleAddBankAccount}>Paypal</CButton>
             </CCol>
             <CCol>Connect your paypal</CCol>
           </CRow>
