@@ -26,31 +26,31 @@ const AddVenue = () => {
   const [venueCity, setVenueCity] = useState('')
   const [venueDivision, setVenueDivision] = useState('')
 
-  const onAddVenueName = (e) => {
+  const onChangeVenueName = (e) => {
     const venueName = e.target.value
     setVenueName(venueName)
   }
-  const onAddVenueAddress = (e) => {
+  const onChangeVenueAddress = (e) => {
     const venueAddress = e.target.value
     setVenueAddress(venueAddress)
   }
-  const onAddVenueCity = (e) => {
+  const onChangeVenueCity = (e) => {
     const VenueCity = e.target.value
     setVenueCity(VenueCity)
   }
-  const onAddVenueCountry = (e) => {
+  const onChangeVenueCountry = (e) => {
     const venueCountry = e.target.value
     setVenueCountry(venueCountry)
   }
-  const onAddVenueType = (e) => {
+  const onChangeVenueType = (e) => {
     const venueType = e.target.value
     setVenueType(venueType)
   }
-  const onAddVenueDivision = (e) => {
+  const onChangeVenueDivision = (e) => {
     const venueDivision = e.target.value
     setVenueDivision(venueDivision)
   }
-  const onAddVenuePostcode = (e) => {
+  const onChangeVenuePostcode = (e) => {
     const venuePostcode = e.target.value
     setVenuePostcode(venuePostcode)
   }
@@ -88,7 +88,7 @@ const AddVenue = () => {
                     <CFormInput
                       name={'venueName'}
                       value={venueName}
-                      onChange={onAddVenueName}
+                      onChange={onChangeVenueName}
                       required
                     />
                   </CFormLabel>
@@ -101,7 +101,7 @@ const AddVenue = () => {
                     <CFormInput
                       name={'venueAddress'}
                       value={venueAddress}
-                      onChange={onAddVenueAddress}
+                      onChange={onChangeVenueAddress}
                       required
                     />
                   </CFormLabel>
@@ -114,7 +114,7 @@ const AddVenue = () => {
                     <CFormInput
                       name={'venueCity'}
                       value={venueCity}
-                      onChange={onAddVenueCity}
+                      onChange={onChangeVenueCity}
                       required
                     />
                   </CFormLabel>
@@ -127,7 +127,7 @@ const AddVenue = () => {
                     <CFormInput
                       name={'venueCountry'}
                       value={venueCountry}
-                      onChange={onAddVenueCountry}
+                      onChange={onChangeVenueCountry}
                       required
                     />
                   </CFormLabel>
@@ -140,7 +140,7 @@ const AddVenue = () => {
                     <CFormInput
                       name={'venuePostcode'}
                       value={venuePostcode}
-                      onChange={onAddVenuePostcode}
+                      onChange={onChangeVenuePostcode}
                       required
                     />
                   </CFormLabel>
@@ -153,7 +153,7 @@ const AddVenue = () => {
                     <CFormInput
                       name={'venueDivision'}
                       value={venueDivision}
-                      onChange={onAddVenueDivision}
+                      onChange={onChangeVenueDivision}
                       required
                     />
                   </CFormLabel>
@@ -166,7 +166,7 @@ const AddVenue = () => {
                     <CFormSelect
                       name={'venueType'}
                       value={venueType}
-                      onChange={onAddVenueType}
+                      onChange={onChangeVenueType}
                       required
                     >
                       <option>Physical</option>

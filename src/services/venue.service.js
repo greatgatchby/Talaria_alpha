@@ -7,23 +7,23 @@ const user = JSON.parse(localStorage.getItem('user'))
 const createVenue = (
   venueName,
   venueType,
-  address,
-  postcode,
-  country,
-  city,
-  division,
-  mercahntid,
+  venueAddress,
+  venuePostcode,
+  venueCountry,
+  venueCity,
+  venueDivision,
+  merchantid,
 ) => {
   return axios
     .post(API_URL, {
       headers: authHeader(),
       venueName,
       venueType,
-      address,
-      postcode,
-      country,
-      city,
-      division,
+      venueAddress,
+      venuePostcode,
+      venueCountry,
+      venueCity,
+      venueDivision,
       merchantid: user.id,
     })
     .then((response) => {
@@ -42,15 +42,24 @@ const findOneVenue = (venueid) => {
   })
 }
 
-const updateVenue = (venueid, venueName, address, postcode, country, city, division) => {
+const updateVenue = (
+  venueid,
+  venueName,
+  venueAddress,
+  venuePostcode,
+  venueCountry,
+  venueCity,
+  venueDivision,
+) => {
   return axios.put(API_URL + venueid, {
     headers: authHeader(),
+    venueid,
     venueName,
-    address,
-    postcode,
-    country,
-    city,
-    division,
+    venueAddress,
+    venuePostcode,
+    venueCountry,
+    venueCity,
+    venueDivision,
   })
 }
 
