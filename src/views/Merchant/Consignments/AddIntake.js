@@ -58,16 +58,7 @@ const AddIntake = () => {
   const handleSubmit = (e) => {
     e.preventDefault()
     dispatch(
-      createConsignment(
-        user.id,
-        vendor,
-        itemName,
-        itemSize,
-        askingPrice,
-        intakeType,
-        policyId,
-        1,
-      ),
+      createConsignment(vendor, itemName, itemSize, askingPrice, intakeType, policyId, 1, user.id),
     ).then(console.log('submitted'))
   }
   const setShippingTrue = () => {
@@ -119,7 +110,8 @@ const AddIntake = () => {
                 <CInputGroup>
                   <CFormLabel>
                     Item Size:
-                    <CFormSelect value={itemSize} onChange={onChangeItemSize} required>
+                    <CFormSelect required>
+                      <option></option>
                       <option onClick={() => setItemSize(5.5)}>5.5</option>
                       <option onClick={() => setItemSize(6)}>6</option>
                       <option onClick={() => setItemSize(6.5)}>6.5</option>

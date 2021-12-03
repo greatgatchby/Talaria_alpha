@@ -4,13 +4,7 @@ import authHeader from './auth-header'
 const API_URL = 'http://localhost:3001/billing/'
 const user = JSON.parse(localStorage.getItem('user'))
 
-const createBilling = (
-  email,
-  name,
-  country_code,
-  number,
-  userid,
-) => {
+const createBilling = (email, name, country_code, number) => {
   return axios
     .post(API_URL, {
       headers: { authHeader },
